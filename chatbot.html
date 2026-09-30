@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ucheson Motors Assistant</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: transparent;
+}
+
+
+/* =========================================
+   CHAT WINDOW
+========================================= */
+
+.chatbot {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 390px;
+    height: 580px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.30);
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 999999;
+
+    border: 1px solid #ddd;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.chat-header {
+
+    background: #111;
+
+    color: white;
+
+    padding: 17px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.chat-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chat-status {
+    font-size: 11px;
+    color: #4ade80;
+    margin-top: 4px;
+}
+
+.close-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   CHAT MESSAGES
+========================================= */
+
+.chat-messages {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 15px;
+
+    background: #f4f4f4;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* BOT */
+
+.bot-message {
+
+    align-self: flex-start;
+
+    max-width: 88%;
+
+    background: white;
+
+    color: #222;
+
+    padding: 12px 14px;
+
+    border-radius: 14px 14px 14px 3px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+
+    box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+}
+
+
+/* USER */
+
+.user-message {
+
+    align-self: flex-end;
+
+    max-width: 88%;
+
+    background: #111;
+
+    color: white;
+
+    padding: 12px 14px;
+
+    border-radius: 14px 14px 3px 14px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    margin-top: 9px;
+}
+
+.product-name {
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.product-category {
+
+    color: #666;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+}
+
+.product-price {
+
+    font-weight: bold;
+
+    color: #d97706;
+
+    margin-bottom: 9px;
+}
+
+.product-button {
+
+    width: 100%;
+
+    padding: 8px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #111;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.product-button:hover {
+    background: #333;
+}
+
+
+/* =========================================
+   QUICK BUTTONS
+========================================= */
+
+.quick-buttons {
+
+    display: flex;
+
+    gap: 6px;
+
+    padding: 8px;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+}
+
+.quick-buttons button {
+
+    white-space: nowrap;
+
+    border: 1px solid #ccc;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 7px 11px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.quick-buttons button:hover {
+
+    background: #111;
+
+    color: white;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.chat-input-area {
+
+    display: flex;
+
+    padding: 10px;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+}
+
+.chat-input {
+
+    flex: 1;
+
+    border: 1px solid #ccc;
+
+    outline: none;
+
+    padding: 12px;
+
+    font-size: 14px;
+
+    border-radius: 10px 0 0 10px;
+}
+
+.send-button {
+
+    width: 55px;
+
+    border: none;
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 0 10px 10px 0;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TYPING
+========================================= */
+
+.typing {
+
+    font-size: 13px;
+
+    color: #777;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .chatbot {
+
+        right: 8px;
+
+        bottom: 8px;
+
+        width: calc(100vw - 16px);
+
+        height: 80vh;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     CHATBOT
+===================================================== -->
+
+<div class="chatbot" id="chatbot">
+
+
+    <!-- HEADER -->
+
+    <div class="chat-header">
+
+        <div>
+
+            <div class="chat-title">
+                Ucheson Motors Assistant
+            </div>
+
+            <div class="chat-status">
+                ● Online
+            </div>
+
+        </div>
+
+
+        <button
+            class="close-button"
+            onclick="closeChatbot()">
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+
+    <div
+        class="chat-messages"
+        id="chatMessages">
+
+        <div class="bot-message">
+
+            👋 Hello! Welcome to
+            <strong>Ucheson Motors</strong>.
+
+            <br><br>
+
+            I'm your website assistant.
+
+            <br><br>
+
+            You can ask me things like:
+
+            <br><br>
+
+            • What is available?
+
+            <br>
+
+            • What motorcycle parts do you have?
+
+            <br>
+
+            • Show me brake parts.
+
+            <br>
+
+            • What engine parts do you have?
+
+            <br>
+
+            • What keke parts do you have?
+
+            <br>
+
+            • How much is the motorcycle chain?
+
+            <br>
+
+            • Tell me about Ucheson Motors.
+
+            <br>
+
+            • How can I contact you?
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK QUESTIONS -->
+
+    <div class="quick-buttons">
+
+        <button onclick="askQuick('What is available?')">
+            Products
+        </button>
+
+        <button onclick="askQuick('Show me motorcycle parts')">
+            Motorcycle
+        </button>
+
+        <button onclick="askQuick('Show me engine parts')">
+            Engines
+        </button>
+
+        <button onclick="askQuick('Show me brake parts')">
+            Brakes
+        </button>
+
+        <button onclick="askQuick('How can I contact you?')">
+            Contact
+        </button>
+
+    </div>
+
+
+    <!-- INPUT -->
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask me anything..."
+            autocomplete="off"
+        >
+
+        <button
+            class="send-button"
+            onclick="sendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   UCHESON MOTORS CHATBOT
+===================================================== */
+
+
+/* =====================================================
+   WEBSITE PAGES
+===================================================== */
+
+const WEBSITE_PAGES = {
+
+    home: "index.html",
+
+    products: "products.html",
+
+    about: "aboutus.html",
+
+    contact: "contactus.html"
+
+};
+
+
+/* =====================================================
+   PRODUCT DATA
+===================================================== */
+
+let products = [];
+
+
+/* =====================================================
+   LOAD A WEBSITE PAGE
+===================================================== */
+
+async function loadPage(url) {
+
+    try {
+
+        const response = await fetch(url, {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load " + url
+            );
+        }
+
+        return await response.text();
+
+    } catch (error) {
+
+        console.log(
+            "Could not read:",
+            url,
+            error
+        );
+
+        return "";
+
+    }
+
+}
+
+
+/* =====================================================
+   REMOVE HTML
+===================================================== */
+
+function cleanHTML(html) {
+
+    const parser = new DOMParser();
+
+    const documentPage =
+        parser.parseFromString(
+            html,
+            "text/html"
+        );
+
+
+    /* Remove scripts */
+
+    documentPage
+        .querySelectorAll("script, style")
+        .forEach(element => element.remove());
+
+
+    return documentPage.body
+        ? documentPage.body.innerText
+        : documentPage.documentElement.innerText;
+
+}
+
+
+/* =====================================================
+   GET PRODUCT ARRAY FROM PRODUCTS.HTML
+===================================================== */
+
+function extractProducts(html) {
+
+    const results = [];
+
+
+    /*
+       Look for:
+
+       const products = [
+           ...
+       ];
+    */
+
+    const startText =
+        "const products = [";
+
+
+    const start =
+        html.indexOf(startText);
+
+
+    if (start === -1) {
+
+        console.log(
+            "Product array not found."
+        );
+
+        return results;
+    }
+
+
+    const arrayStart =
+        start + startText.length;
+
+
+    const arrayEnd =
+        html.indexOf(
+            "];",
+            arrayStart
+        );
+
+
+    if (arrayEnd === -1) {
+
+        return results;
+    }
+
+
+    const productText =
+        html.substring(
+            arrayStart,
+            arrayEnd
+        );
+
+
+    /*
+       Find each product object.
+
+       This works with the structure
+       already used in your products.html.
+    */
+
+    const objectRegex =
+        /\{([\s\S]*?)\}/g;
+
+
+    let match;
+
+
+    while (
+        (match = objectRegex.exec(productText))
+        !== null
+    ) {
+
+        const objectText =
+            match[1];
+
+
+        const id =
+            getProductValue(
+                objectText,
+                "id"
+            );
+
+
+        const name =
+            getProductValue(
+                objectText,
+                "name"
+            );
+
+
+        const category =
+            getProductValue(
+                objectText,
+                "category"
+            );
+
+
+        const type =
+            getProductValue(
+                objectText,
+                "type"
+            );
+
+
+        const price =
+            getProductValue(
+                objectText,
+                "price"
+            );
+
+
+        const image =
+            getProductValue(
+                objectText,
+                "image"
+            );
+
+
+        if (name) {
+
+            results.push({
+
+                id: Number(id),
+
+                name: name,
+
+                category:
+                    category || "",
+
+                type:
+                    type || "",
+
+                price:
+                    Number(price) || 0,
+
+                image:
+                    image || ""
+
+            });
+
+        }
+
+    }
+
+
+    return results;
+}
+
+
+/* =====================================================
+   READ VALUE FROM PRODUCT OBJECT
+===================================================== */
+
+function getProductValue(text, key) {
+
+    const stringRegex =
+        new RegExp(
+            key +
+            "\\s*:\\s*[\"']([^\"']*)[\"']"
+        );
+
+
+    const stringMatch =
+        text.match(stringRegex);
+
+
+    if (stringMatch) {
+
+        return stringMatch[1];
+
+    }
+
+
+    const numberRegex =
+        new RegExp(
+            key +
+            "\\s*:\\s*([0-9.]+)"
+        );
+
+
+    const numberMatch =
+        text.match(numberRegex);
+
+
+    if (numberMatch) {
+
+        return numberMatch[1];
+
+    }
+
+
+    return "";
+}
+
+
+/* =====================================================
+   LOAD ALL WEBSITE INFORMATION
+===================================================== */
+
+async function loadWebsiteInformation() {
+
+    try {
+
+        /*
+           Load products first.
+        */
+
+        const productsHTML =
+            await loadPage(
+                WEBSITE_PAGES.products
+            );
+
+
+        if (productsHTML) {
+
+            products =
+                extractProducts(
+                    productsHTML
+                );
+
+            console.log(
+                "Products loaded:",
+                products.length
+            );
+        }
+
+
+        /*
+           Load the other pages.
+
+           We keep their text in memory so
+           the chatbot can search them.
+        */
+
+        window.siteInformation = {
+
+            home:
+                cleanHTML(
+                    await loadPage(
+                        WEBSITE_PAGES.home
+                    )
+                ),
+
+            products:
+                cleanHTML(
+                    productsHTML
+                ),
+
+            about:
+                cleanHTML(
+                    await loadPage(
+                        WEBSITE_PAGES.about
+                    )
+                ),
+
+            contact:
+                cleanHTML(
+                    await loadPage(
+                        WEBSITE_PAGES.contact
+                    )
+                )
+
+        };
+
+
+        console.log(
+            "Ucheson Motors information loaded."
+        );
+
+
+    } catch (error) {
+
+        console.log(
+            "Website information error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(price) {
+
+    return "₦" +
+        Number(price).toLocaleString();
+
+}
+
+
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
+
+function addMessage(
+    message,
+    type = "bot"
+) {
+
+    const container =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const messageElement =
+        document.createElement("div");
+
+
+    messageElement.className =
+        type === "user"
+            ? "user-message"
+            : "bot-message";
+
+
+    messageElement.innerHTML =
+        message;
+
+
+    container.appendChild(
+        messageElement
+    );
+
+
+    container.scrollTop =
+        container.scrollHeight;
+}
+
+
+/* =====================================================
+   SHOW TYPING
+===================================================== */
+
+function showTyping() {
+
+    const container =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const typing =
+        document.createElement("div");
+
+
+    typing.className =
+        "bot-message typing";
+
+
+    typing.id =
+        "typingMessage";
+
+
+    typing.innerHTML =
+        "Ucheson Motors Assistant is typing...";
+
+
+    container.appendChild(
+        typing
+    );
+
+
+    container.scrollTop =
+        container.scrollHeight;
+}
+
+
+/* =====================================================
+   REMOVE TYPING
+===================================================== */
+
+function removeTyping() {
+
+    const typing =
+        document.getElementById(
+            "typingMessage"
+        );
+
+
+    if (typing) {
+
+        typing.remove();
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUCTS
+===================================================== */
+
+function searchProducts(words) {
+
+    const search =
+        words.toLowerCase();
+
+
+    return products.filter(product => {
+
+        const name =
+            product.name.toLowerCase();
+
+        const category =
+            product.category.toLowerCase();
+
+        const type =
+            product.type.toLowerCase();
+
+
+        return (
+
+            name.includes(search) ||
+
+            category.includes(search) ||
+
+            type.includes(search)
+
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   SHOW PRODUCT RESULTS
+===================================================== */
+
+function showProducts(
+    list,
+    title = "Products available:"
+) {
+
+    if (!list.length) {
+
+        addMessage(
+            "I couldn't find a matching product in the current product list."
+        );
+
+        return;
+    }
+
+
+    let html =
+        "<strong>" +
+        title +
+        "</strong>";
+
+
+    list.forEach(product => {
+
+        html += `
+
+            <div class="product-card">
+
+                <div class="product-name">
+                    ${escapeHTML(product.name)}
+                </div>
+
+                <div class="product-category">
+
+                    Category:
+                    ${escapeHTML(product.category)}
+
+                    <br>
+
+                    Type:
+                    ${escapeHTML(product.type)}
+
+                </div>
+
+                <div class="product-price">
+
+                    ${formatPrice(product.price)}
+
+                </div>
+
+                <button
+                    class="product-button"
+                    onclick="openProductPage(${product.id})">
+
+                    View Product
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+
+    addMessage(html);
+}
+
+
+/* =====================================================
+   SHOW ALL PRODUCTS
+===================================================== */
+
+function showAllProducts() {
+
+    if (!products.length) {
+
+        addMessage(
+            "I'm still loading the product list. Please try again in a moment."
+        );
+
+        return;
+    }
+
+
+    showProducts(
+        products,
+        "Here are the products currently listed on Ucheson Motors:"
+    );
+}
+
+
+/* =====================================================
+   OPEN PRODUCT
+===================================================== */
+
+function openProductPage(id) {
+
+    /*
+       Takes the customer to products.html.
+
+       The product page can then show the product
+       using its existing system.
+    */
+
+    window.open(
+        "products.html",
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   SEARCH PAGE INFORMATION
+===================================================== */
+
+function searchWebsiteInformation(
+    question
+) {
+
+    const q =
+        question.toLowerCase();
+
+
+    const results = [];
+
+
+    for (
+        const page in window.siteInformation
+    ) {
+
+        const text =
+            window.siteInformation[page];
+
+
+        if (!text) continue;
+
+
+        const words =
+            q
+                .replace(/[?.,!]/g, "")
+                .split(/\s+/)
+                .filter(word =>
+                    word.length > 3
+                );
+
+
+        let score = 0;
+
+
+        words.forEach(word => {
+
+            if (
+                text.toLowerCase()
+                    .includes(word)
+            ) {
+
+                score++;
+
+            }
+
+        });
+
+
+        if (score > 0) {
+
+            results.push({
+
+                page: page,
+
+                score: score,
+
+                text: text
+
+            });
+
+        }
+
+    }
+
+
+    results.sort(
+        (a, b) =>
+            b.score - a.score
+    );
+
+
+    return results;
+}
+
+
+/* =====================================================
+   ANSWER ABOUT WEBSITE
+===================================================== */
+
+function answerFromWebsite(question) {
+
+    const results =
+        searchWebsiteInformation(
+            question
+        );
+
+
+    if (!results.length) {
+
+        return null;
+
+    }
+
+
+    const best =
+        results[0];
+
+
+    const pageNames = {
+
+        home:
+            "Home page",
+
+        products:
+            "Products page",
+
+        about:
+            "About Us page",
+
+        contact:
+            "Contact page"
+
+    };
+
+
+    /*
+       We don't dump the entire HTML page
+       into the chat.
+
+       Instead, tell the user where the
+       relevant information comes from.
+    */
+
+    return {
+
+        page:
+            pageNames[best.page] ||
+            best.page,
+
+        text:
+            best.text
+
+    };
+
+}
+
+
+/* =====================================================
+   MAIN CHATBOT BRAIN
+===================================================== */
+
+function processQuestion(question) {
+
+    const q =
+        question
+            .toLowerCase()
+            .trim();
+
+
+    /* =========================================
+       GREETING
+    ========================================= */
+
+    if (
+        q === "hi" ||
+        q === "hello" ||
+        q === "hey" ||
+        q.includes("good morning") ||
+        q.includes("good afternoon") ||
+        q.includes("good evening")
+    ) {
+
+        return `
+            👋 Hello! Welcome to
+            <strong>Ucheson Motors</strong>.
+
+            <br><br>
+
+            I can help you find products,
+            prices and information from the
+            website.
+
+            <br><br>
+
+            What would you like to know?
+        `;
+
+    }
+
+    /* =========================================
+   NORMAL CONVERSATION
+========================================= */
+
+if (
+    q.includes("how are you") ||
+    q.includes("how are you doing") ||
+    q.includes("how are things")
+) {
+
+    return `
+        😊 I'm doing great, thanks for asking!
+
+        <br><br>
+
+        I'm here to help you with
+        <strong>Ucheson Motors</strong>.
+
+        <br><br>
+
+        What would you like to know?
+    `;
+}
+
+
+if (
+    q === "thanks" ||
+    q === "thank you" ||
+    q.includes("thank you")
+) {
+
+    return `
+        You're very welcome! 😊
+        <br><br>
+        I'm happy to help.
+    `;
+}
+
+
+if (
+    q === "bye" ||
+    q === "goodbye" ||
+    q.includes("see you")
+) {
+
+    return `
+        Goodbye! 👋
+        <br><br>
+        Thanks for visiting
+        <strong>Ucheson Motors</strong>.
+    `;
+}
+
+
+if (
+    q.includes("who are you") ||
+    q.includes("what are you")
+) {
+
+    return `
+        I'm the <strong>Ucheson Motors
+        Virtual Assistant</strong>. 🤖
+
+        <br><br>
+
+        I can help you find products,
+        prices and information from the
+        website.
+    `;
+}
+
+
+if (
+    q.includes("what can you do") ||
+    q.includes("what do you do")
+) {
+
+    return `
+        I can help you with:
+
+        <br><br>
+
+        🏍️ Finding motorcycle parts
+        <br>
+        🛺 Finding keke parts
+        <br>
+        🏍️ Finding power bike parts
+        <br>
+        ⚙️ Finding engine parts
+        <br>
+        🛞 Finding tyres and wheels
+        <br>
+        💰 Finding listed product prices
+        <br>
+        📞 Finding contact information
+        <br>
+        🏢 Giving information about Ucheson Motors
+    `;
+}
+    
+
+    /* =========================================
+       WHAT IS AVAILABLE?
+    ========================================= */
+
+    if (
+
+        q.includes("what is available") ||
+
+        q.includes("what's available") ||
+
+        q.includes("what do you have") ||
+
+        q.includes("available products") ||
+
+        q.includes("show products") ||
+
+        q.includes("list products") ||
+
+        q === "products"
+
+    ) {
+
+        showAllProducts();
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       HOW MANY PRODUCTS?
+    ========================================= */
+
+    if (
+
+        q.includes("how many products") ||
+
+        q.includes("number of products") ||
+
+        q.includes("how many parts")
+
+    ) {
+
+        return `
+            There are currently
+            <strong>${products.length}</strong>
+            products listed in the Ucheson Motors
+            product catalogue.
+        `;
+
+    }
+
+
+    /* =========================================
+       MOTORCYCLE
+    ========================================= */
+
+    if (
+
+        q.includes("motorcycle") ||
+
+        q.includes("motorbike")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.type.toLowerCase()
+                === "motorcycle"
+            );
+
+
+        showProducts(
+            result,
+            "🏍️ Motorcycle products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       POWER BIKE
+    ========================================= */
+
+    if (
+
+        q.includes("power bike") ||
+
+        q.includes("powerbike")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.type.toLowerCase()
+                === "powerbike"
+            );
+
+
+        showProducts(
+            result,
+            "🏍️ Power bike products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       KEKE
+    ========================================= */
+
+    if (
+
+        q.includes("keke") ||
+
+        q.includes("tvs king")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.type.toLowerCase()
+                === "keke"
+            );
+
+
+        showProducts(
+            result,
+            "🛺 Keke / TVS products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       ENGINE
+    ========================================= */
+
+    if (
+
+        q.includes("engine") ||
+
+        q.includes("engines")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.category.toLowerCase()
+                === "engine"
+            );
+
+
+        showProducts(
+            result,
+            "⚙️ Engine products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       BRAKES
+    ========================================= */
+
+    if (
+
+        q.includes("brake") ||
+
+        q.includes("brakes")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.category.toLowerCase()
+                === "brakes"
+            );
+
+
+        showProducts(
+            result,
+            "🛑 Brake products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       TYRES
+    ========================================= */
+
+    if (
+
+        q.includes("tyre") ||
+
+        q.includes("tyres") ||
+
+        q.includes("tire") ||
+
+        q.includes("tires")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.category.toLowerCase()
+                === "tyres"
+            );
+
+
+        showProducts(
+            result,
+            "🛞 Tyres:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       DRIVE / CHAIN / CLUTCH
+    ========================================= */
+
+    if (
+
+        q.includes("chain") ||
+
+        q.includes("clutch") ||
+
+        q.includes("drive")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+                product.category.toLowerCase()
+                === "drive"
+            );
+
+
+        showProducts(
+            result,
+            "🔧 Drive and transmission products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       WHEELS
+    ========================================= */
+
+    if (
+
+        q.includes("wheel") ||
+
+        q.includes("wheels") ||
+
+        q.includes("rim") ||
+
+        q.includes("rims")
+
+    ) {
+
+        const result =
+            products.filter(product =>
+
+                product.name
+                    .toLowerCase()
+                    .includes("wheel")
+
+                ||
+
+                product.name
+                    .toLowerCase()
+                    .includes("rim")
+
+            );
+
+
+        showProducts(
+            result,
+            "🛞 Wheels and rims:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       PRICE QUESTIONS
+    ========================================= */
+
+    if (
+
+        q.includes("how much") ||
+
+        q.includes("price of") ||
+
+        q.includes("cost of") ||
+
+        q.includes("what is the price")
+
+    ) {
+
+        /*
+           Remove common words so we can
+           search for the product name.
+        */
+
+        const searchWords =
+            q
+                .replace("how much", "")
+                .replace("is", "")
+                .replace("the", "")
+                .replace("price", "")
+                .replace("of", "")
+                .replace("cost", "")
+                .replace("what", "")
+                .replace("the", "")
+                .trim();
+
+
+        const words =
+            searchWords
+                .split(/\s+/)
+                .filter(word =>
+                    word.length > 2
+                );
+
+
+        const result =
+            products.filter(product => {
+
+                const name =
+                    product.name
+                        .toLowerCase();
+
+
+                return words.some(word =>
+                    name.includes(word)
+                );
+
+            });
+
+
+        if (result.length) {
+
+            showProducts(
+                result,
+                "💰 Here are the matching products and their prices:"
+            );
+
+            return null;
+
+        }
+
+
+        return `
+            I couldn't identify the exact
+            product.
+
+            <br><br>
+
+            Try something like:
+
+            <br>
+
+            <strong>
+            How much is the motorcycle chain?
+            </strong>
+        `;
+
+    }
+
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+
+    if (
+
+        q.includes("contact") ||
+
+        q.includes("phone") ||
+
+        q.includes("telephone") ||
+
+        q.includes("email") ||
+
+        q.includes("address") ||
+
+        q.includes("location") ||
+
+        q.includes("where are you")
+
+    ) {
+
+        const info =
+            answerFromWebsite(question);
+
+
+        if (info) {
+
+            return `
+                📞 You can find the current
+                contact information on the
+                <strong>${info.page}</strong>.
+
+                <br><br>
+
+                <a
+                    href="contactus.html"
+                    target="_top">
+
+                    Open Contact Us
+
+                </a>
+            `;
+
+        }
+
+
+        return `
+            You can find our contact information
+            on the Contact Us page.
+
+            <br><br>
+
+            <a
+                href="contactus.html"
+                target="_top">
+
+                Open Contact Us
+
+            </a>
+        `;
+
+    }
+
+
+    /* =========================================
+       ABOUT COMPANY
+    ========================================= */
+
+    if (
+
+        q.includes("about you") ||
+
+        q.includes("about ucheson") ||
+
+        q.includes("who are you") ||
+
+        q.includes("company") ||
+
+        q.includes("about the company")
+
+    ) {
+
+        const info =
+            answerFromWebsite(question);
+
+
+        if (info) {
+
+            return `
+                You can find information about
+                Ucheson Motors on our
+                <strong>About Us</strong> page.
+
+                <br><br>
+
+                <a
+                    href="aboutus.html"
+                    target="_top">
+
+                    Open About Us
+
+                </a>
+            `;
+
+        }
+
+
+        return `
+            Ucheson Motors is represented by
+            the information provided throughout
+            this website.
+
+            <br><br>
+
+            <a
+                href="aboutus.html"
+                target="_top">
+
+                Learn More About Us
+
+            </a>
+        `;
+
+    }
+
+
+    /* =========================================
+       SEARCH FOR EXACT PRODUCT
+    ========================================= */
+
+    const exactMatches =
+        products.filter(product => {
+
+            const name =
+                product.name.toLowerCase();
+
+            const words =
+                q.split(/\s+/)
+                   .filter(word =>
+                       word.length > 2
+                   );
+
+
+            return words.some(word =>
+                name.includes(word)
+            );
+
+        });
+
+
+    if (exactMatches.length) {
+
+        showProducts(
+            exactMatches,
+            "🔎 I found these matching products:"
+        );
+
+        return null;
+
+    }
+
+
+    /* =========================================
+       WEBSITE INFORMATION SEARCH
+    ========================================= */
+
+    const websiteInfo =
+        answerFromWebsite(question);
+
+
+    if (websiteInfo) {
+
+        return `
+            I found information related to
+            your question on the
+            <strong>${websiteInfo.page}</strong>.
+
+            <br><br>
+
+            You can open that page to see
+            the full information.
+        `;
+
+    }
+
+
+    /* =========================================
+       UNKNOWN QUESTION
+    ========================================= */
+
+    return `
+        I'm not sure about that yet.
+
+        <br><br>
+
+        Try asking me:
+
+        <br><br>
+
+        • What is available?
+
+        <br>
+
+        • What motorcycle parts do you have?
+
+        <br>
+
+        • Show me brake parts.
+
+        <br>
+
+        • Show me engine parts.
+
+        <br>
+
+        • Show me keke parts.
+
+        <br>
+
+        • Show me power bike parts.
+
+        <br>
+
+        • How much is the motorcycle chain?
+
+        <br>
+
+        • How can I contact you?
+
+        <br>
+
+        • Tell me about Ucheson Motors.
+    `;
+
+}
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const question =
+        input.value.trim();
+
+
+    if (!question) {
+
+        return;
+
+    }
+
+
+    /* Show user message */
+
+    addMessage(
+        escapeHTML(question),
+        "user"
+    );
+
+
+    /* Clear input */
+
+    input.value = "";
+
+
+    /* Show typing */
+
+    showTyping();
+
+
+    setTimeout(() => {
+
+        removeTyping();
+
+
+        const answer =
+            processQuestion(question);
+
+
+        if (answer) {
+
+            addMessage(answer);
+
+        }
+
+    }, 400);
+
+}
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document
+    .getElementById("chatInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                sendMessage();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   QUICK QUESTION
+===================================================== */
+
+function askQuick(question) {
+
+    document
+        .getElementById("chatInput")
+        .value = question;
+
+
+    sendMessage();
+
+}
+
+
+/* =====================================================
+   CLOSE CHATBOT
+===================================================== */
+
+function closeChatbot() {
+
+    /*
+       Because the chatbot is inside an iframe,
+       hide the iframe itself from the parent page.
+    */
+
+    try {
+
+        window.parent
+            .postMessage(
+                {
+                    type:
+                        "CLOSE_UCHESON_CHATBOT"
+                },
+                "*"
+            );
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   LOAD INFORMATION WHEN CHATBOT STARTS
+===================================================== */
+
+loadWebsiteInformation();
+
+
+
+
+</script>
+
+</body>
+</html>

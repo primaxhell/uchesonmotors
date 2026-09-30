@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</s></title>
+     <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>UCHESON</span> MOTORS
+        </div>
+
+        <nav class="navbar" id="navbar">
+            <a href="index.html">Home</a>
+            <a href="products.html"> ucheson products</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact</a>
+        </nav>
+     </header>
+    <br><br><br><br><br>
+
+     <style>
+          .logo {
+           color: darkblue;
+           position: absolute;
+         }
+         .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+         }
+         .header {
+            position: absolute;
+         }
+        </style>
+
+     <!-- ================= CONTACT ================= -->
+
+    <section class="contact" id="contact">
+
+        <div class="section-title">
+
+            <p>GET IN TOUCH</p>
+
+            <h2>
+                Contact Ucheson Motors
+            </h2>
+
+        </div>
+
+
+        <div class="contact-container">
+
+            <div class="contact-info">
+
+                <div class="contact-item">
+
+                    <span>📍</span>
+
+                    <div>
+                        <h3>Location</h3>
+                        <p>OYES® PLAZA,Bwari Express,Road,Kubwa 901101,Opp. Dutse,Market, FCT</p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <span>📞</span>
+
+                    <div>
+                        <h3>Phone</h3>
+                        <p>091 664 390 26,080 279 774 54</p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <span>✉️</span>
+
+                    <div>
+                        <h3>Email</h3>
+                        <p>info@oyesltd.com</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form class="contact-form" onsubmit="sendMessage(event)">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Phone Number"
+                    required
+                >
+
+                <textarea
+                    id="message"
+                    rows="5"
+                    placeholder="How can we help you?"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+      <!-- ================= FOOTER ================= -->
+
+  <footer class="footer">
+
+    <div class="footer-top">
+
+        <!-- Left side -->
+        <div class="footer-title">
+            <h2>Your<br>
+                world<br>
+                with<br>
+                UCHESON MOTORS®
+            </h2>
+        </div>
+
+        <!-- Call Us -->
+        <div class="footer-column">
+            <h4>● &nbsp; CALL US</h4>
+            <p>091 664 390 26</p>
+            <p>080 279 774 54</p>
+        </div>
+
+        <!-- General Enquiries -->
+        <div class="footer-column">
+            <h4>● &nbsp; GENERAL ENQUIRIES</h4>
+            <p>
+                <a href="mailto:info@oyesltd.com">
+                    info@oyesltd.com
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="footer-line"></div>
+
+
+    <div class="footer-bottom">
+
+        <!-- Copyright -->
+        <div class="copyright">
+            ©2026 ─── All rights reserved.
+        </div>
+
+        <!-- Abuja -->
+        <div class="location">
+            <h4>● &nbsp; ABUJA</h4>
+            <p>
+                OYES® PLAZA<br>
+                Bwari Express<br>
+                Road<br>
+                Kubwa 901101<br>
+                Opp. Dutse<br>
+                Market, FCT
+            </p>
+        </div>
+
+        <!-- Kaduna -->
+        <div class="location">
+            <h4>● &nbsp; KADUNA</h4>
+            <p>
+                OYES® PLAZA<br>
+                H18 Katsina Road<br>
+                By Abeokuta<br>
+                Street<br>
+                Kaduna
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+
+<!-- CHATBOT -->
+
+<button
+    id="chatbotButton"
+    onclick="openChatbot()"
+    style="
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        background: #111;
+        color: white;
+        font-size: 25px;
+        cursor: pointer;
+        z-index: 999999;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    ">
+    💬
+</button>
+
+<iframe
+    id="chatbotFrame"
+    src="chatbot.html"
+    style="
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 390px;
+        height: 580px;
+        border: none;
+        z-index: 999998;
+    ">
+</iframe>
+
+<script>
+
+function openChatbot() {
+
+    document.getElementById("chatbotButton").style.display = "none";
+
+    document.getElementById("chatbotFrame").style.display = "block";
+
+}
+
+window.addEventListener("message", function(event) {
+
+    if (
+        event.data &&
+        event.data.type === "CLOSE_UCHESON_CHATBOT"
+    ) {
+
+        document.getElementById("chatbotFrame").style.display = "none";
+
+        document.getElementById("chatbotButton").style.display = "block";
+
+    }
+
+});
+
+</script>
