@@ -1136,6 +1136,510 @@ footer li:hover{
         line-height:2;
     }
 }
+/* =====================================================
+   UCHESON MOTORS - MOBILE VERSION
+   ADD THIS AT THE VERY BOTTOM OF YOUR CSS
+===================================================== */
+
+/* Mobile menu button - hidden on desktop */
+.mobile-menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(37, 133, 255, 0.5);
+    border-radius: 10px;
+    background: rgba(11, 78, 162, 0.25);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(37, 133, 255, 0.4);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 800px) {
+
+    /* HEADER */
+    header {
+        height: 70px;
+        padding: 0 18px;
+        gap: 8px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+
+    .logo {
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .cart-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+
+    /* MOBILE NAVIGATION */
+
+    header nav {
+        display: flex;
+
+        position: absolute;
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 10px 20px 20px;
+
+        background: rgba(5, 8, 13, 0.98);
+        backdrop-filter: blur(20px);
+
+        border-bottom: 1px solid rgba(37, 133, 255, 0.25);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-15px);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    header nav.mobile-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    header nav a {
+        display: block;
+        padding: 16px 5px;
+
+        font-size: 16px;
+
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    header nav a:last-child {
+        border-bottom: none;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 100svh;
+        padding-top: 70px;
+    }
+
+    .hero-content {
+        margin-left: 6%;
+        margin-right: 6%;
+        max-width: 90%;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 9vw, 60px);
+        line-height: 0.95;
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 500px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+
+    /* GENERAL SECTIONS */
+
+    .section {
+        padding: 65px 20px;
+    }
+
+    .section-head {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+        font-size: clamp(30px, 8vw, 48px);
+    }
+
+
+    /* PRODUCTS */
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .product-card {
+        min-width: 0;
+    }
+
+    .product-card img {
+        height: 220px;
+    }
+
+
+    /* SEARCH + FILTER */
+
+    .shop-tools {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .shop-tools select {
+        width: 100%;
+    }
+
+
+    /* FEATURES */
+
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .about-image {
+        min-height: 350px;
+    }
+
+
+    /* MODAL */
+
+    .modal {
+        padding: 15px;
+    }
+
+    .modal-box {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-height: 92vh;
+        overflow-y: auto;
+    }
+
+    .modal-img {
+        min-height: 260px;
+        max-height: 330px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+
+    /* DISABLE CUSTOM CURSOR */
+
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 550px) {
+
+    /* HEADER */
+
+    header {
+        height: 64px;
+        padding: 0 12px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .mobile-menu-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+    }
+
+    .cart-btn {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    header nav {
+        top: 64px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 100svh;
+    }
+
+    .hero-content {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 47px;
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .hero-stats {
+        gap: 15px;
+    }
+
+
+    /* SECTIONS */
+
+    .section {
+        padding: 55px 15px;
+    }
+
+
+    /* PRODUCTS */
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .product-card img {
+        height: 250px;
+    }
+
+
+    /* SEARCH */
+
+    .shop-tools {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-box,
+    .shop-tools select {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* FEATURES */
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ABOUT */
+
+    .about-image {
+        min-height: 280px;
+    }
+
+
+    /* CART */
+
+    .cart-drawer {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .cart-item {
+        grid-template-columns: 58px 1fr auto;
+        gap: 8px;
+    }
+
+    .cart-item img {
+        width: 58px;
+        height: 58px;
+        object-fit: cover;
+    }
+
+
+    /* PRODUCT MODAL */
+
+    .modal {
+        padding: 8px;
+    }
+
+    .modal-box {
+        border-radius: 15px;
+        max-height: 94vh;
+    }
+
+    .modal-img {
+        min-height: 220px;
+        max-height: 280px;
+    }
+
+    .modal-info {
+        padding: 20px;
+    }
+
+    .modal-info h2 {
+        font-size: 26px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .copyright {
+        display: block;
+        line-height: 2;
+    }
+
+
+    /* CHATBOT */
+
+    #chatbotButton {
+        width: 52px !important;
+        height: 52px !important;
+        right: 12px !important;
+        bottom: 12px !important;
+        font-size: 22px !important;
+    }
+
+    #chatbotFrame {
+        width: calc(100vw - 16px) !important;
+        max-width: calc(100vw - 16px) !important;
+
+        height: calc(100vh - 90px) !important;
+
+        right: 8px !important;
+        bottom: 8px !important;
+
+        border-radius: 15px !important;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 13px;
+    }
+
+    .cart-btn {
+        font-size: 11px;
+        padding: 7px;
+    }
+
+    .mobile-menu-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .product-card img {
+        height: 220px;
+    }
+}
+
+/* =====================================================
+   MOBILE CHATBOT
+===================================================== */
+
+@media(max-width:550px){
+
+    #chatbotButton{
+
+        width:52px !important;
+        height:52px !important;
+
+        right:12px !important;
+        bottom:12px !important;
+
+        font-size:21px !important;
+
+    }
+
+    #chatbotFrame{
+
+        width:calc(100vw - 16px) !important;
+        max-width:calc(100vw - 16px) !important;
+
+        height:calc(100vh - 85px) !important;
+
+        right:8px !important;
+        bottom:8px !important;
+
+        border-radius:16px !important;
+
+    }
+
+}
+@media(max-width:800px){
+    .chatbot{
+        /* mobile chatbot adjustments */
+    }
+}
 </style>
 </head>
 
@@ -1165,6 +1669,9 @@ footer li:hover{
         <a href="aboutus.html">About Us</a>
         <a href="contactus.html">Contact</a>
     </nav>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+    ☰
+    </button>
 
     <button class="cart-btn" onclick="openCart()">
         🛒 Cart
@@ -2535,6 +3042,94 @@ document
 renderProducts();
 
 updateCart();
+/* =====================================================
+   UCHESON MOTORS - MOBILE MENU
+===================================================== */
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.getElementById("mainNav");
+
+if (mobileMenuBtn && mainNav) {
+
+    /* OPEN / CLOSE MENU */
+
+    mobileMenuBtn.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        const isOpen = mainNav.classList.toggle("mobile-open");
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        mobileMenuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+
+    /* CLOSE MENU WHEN A LINK IS CLICKED */
+
+    mainNav.querySelectorAll("a").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            mainNav.classList.remove("mobile-open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuBtn.textContent = "☰";
+        });
+
+    });
+
+
+    /* CLOSE MENU WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function(event) {
+
+        if (
+            window.innerWidth <= 800 &&
+            mainNav.classList.contains("mobile-open") &&
+            !mainNav.contains(event.target) &&
+            !mobileMenuBtn.contains(event.target)
+        ) {
+
+            mainNav.classList.remove("mobile-open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuBtn.textContent = "☰";
+        }
+
+    });
+
+
+    /* RESET WHEN SCREEN BECOMES DESKTOP */
+
+    window.addEventListener("resize", function() {
+
+        if (window.innerWidth > 800) {
+
+            mainNav.classList.remove("mobile-open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuBtn.textContent = "☰";
+        }
+
+    });
+
+}
 
 </script>
 

@@ -2031,5 +2031,49 @@ footer > p {
         align-items: flex-start;
     }
 }
+/* ==========================================================================
+   TARGETED MOBILE FIX (Only activates on screens 768px wide or smaller)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
 
+  /* 1. Force the parent layout container to stack cards top-to-bottom instead of side-by-side */
+  main, body, [class*="container"], [class*="wrapper"], [class*="main"], [class*="content"] {
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Force the three white text columns to break out and stretch comfortably wide */
+  div, section, article, [class*="col"], [class*="card"], [class*="box"] {
+    /* If an element has a white background or text columns, expand it */
+    if-has-sibling { display: block; } 
+    
+    /* These force the squished white columns to go wide */
+    width: 90% !important; 
+    max-width: 420px !important;
+    min-width: 0 !important;
+    
+    /* This completely stops them from stretching vertically like long sticks */
+    height: auto !important; 
+    min-height: unset !important;
+    
+    /* Spacing fixes */
+    margin: 15px auto !important;
+    padding: 25px 20px !important;
+    box-sizing: border-box !important;
+    float: none !important;
+  }
+
+  /* 3. Adjust the text layout inside so it doesn't break into single letters */
+  h1, h2, h3, p, a, span {
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
 
