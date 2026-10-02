@@ -2031,49 +2031,401 @@ footer > p {
         align-items: flex-start;
     }
 }
-/* ==========================================================================
-   TARGETED MOBILE FIX (Only activates on screens 768px wide or smaller)
-   ========================================================================== */
-@media screen and (max-width: 768px) {
+/* =====================================================
+   FINAL MOBILE RESPONSIVE FIX
+   UCHESON MOTORS
+===================================================== */
 
-  /* 1. Force the parent layout container to stack cards top-to-bottom instead of side-by-side */
-  main, body, [class*="container"], [class*="wrapper"], [class*="main"], [class*="content"] {
-    display: flex !important;
-    flex-direction: column !important; 
-    align-items: center !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 10px !important;
-    box-sizing: border-box !important;
-  }
+@media (max-width: 768px) {
 
-  /* 2. Force the three white text columns to break out and stretch comfortably wide */
-  div, section, article, [class*="col"], [class*="card"], [class*="box"] {
-    /* If an element has a white background or text columns, expand it */
-    if-has-sibling { display: block; } 
-    
-    /* These force the squished white columns to go wide */
-    width: 90% !important; 
-    max-width: 420px !important;
-    min-width: 0 !important;
-    
-    /* This completely stops them from stretching vertically like long sticks */
-    height: auto !important; 
-    min-height: unset !important;
-    
-    /* Spacing fixes */
-    margin: 15px auto !important;
-    padding: 25px 20px !important;
-    box-sizing: border-box !important;
-    float: none !important;
-  }
+    /* ================= HEADER ================= */
 
-  /* 3. Adjust the text layout inside so it doesn't break into single letters */
-  h1, h2, h3, p, a, span {
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-    white-space: normal !important;
-    text-align: center !important;
-  }
+    .header {
+        height: 70px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .logo {
+        font-size: 18px;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .logo-ucheson-products {
+        font-size: 18px;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .cart-button {
+        padding: 6px 8px;
+        font-size: 14px;
+        color: white;
+        white-space: nowrap;
+    }
+
+    .menu-button {
+        display: block;
+        font-size: 36px;
+        line-height: 1;
+        padding: 0;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .navbar {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(17, 17, 17, 0.97) !important;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar a {
+        color: white;
+        padding: 15px 20px;
+        border-top: 1px solid #333;
+        font-size: 16px;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+        width: 100%;
+        min-height: 100svh;
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        overflow: hidden;
+
+        display: block;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: none;
+
+        padding: 105px 22px 50px;
+
+        margin: 0;
+
+        position: relative;
+        z-index: 2;
+
+        text-align: center;
+    }
+
+    /* Small blue heading */
+
+    .hero-small {
+        font-size: 34px;
+        line-height: 1.15;
+        letter-spacing: 1px;
+
+        margin-bottom: 25px;
+
+        max-width: 100%;
+
+        color: #1746d1;
+    }
+
+
+    /* Main heading */
+
+    .hero h1 {
+        font-size: 42px;
+        line-height: 1.05;
+
+        margin-bottom: 20px;
+
+        word-wrap: break-word;
+    }
+
+
+    /* Description */
+
+    .hero-description {
+        font-size: 17px;
+        line-height: 1.5;
+
+        max-width: 100%;
+
+        margin: 0 auto 25px;
+    }
+
+
+    /* Buttons */
+
+    .hero-buttons {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 14px;
+
+        width: 100%;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: min(280px, 100%);
+
+        padding: 14px 20px;
+
+        text-align: center;
+
+        font-size: 16px;
+    }
+
+
+    /* ================= CATEGORIES ================= */
+
+    .categories {
+        padding: 60px 20px;
+    }
+
+    .category-container {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+
+    /* ================= PRODUCTS ================= */
+
+    .products-section {
+        padding: 60px 20px 80px;
+    }
+
+    .products-section-ucheson-products {
+        padding: 60px 20px 80px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .products-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+
+        max-width: 100%;
+    }
+
+    .product-card,
+    .product-small,
+    .product-large {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .product-image {
+        height: 240px;
+    }
+
+    .products-title {
+        font-size: 55px;
+        white-space: normal;
+        text-align: center;
+    }
+
+
+    /* ================= FEATURES ================= */
+
+    .features {
+        padding: 60px 20px;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+
+    /* ================= ABOUT ================= */
+
+    .about {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+        gap: 35px;
+    }
+
+    .about-content h2 {
+        font-size: 30px;
+    }
+
+
+    /* ================= UCHESON ABOUT ================= */
+
+    .about-ucheson {
+        grid-template-columns: 1fr;
+
+        padding: 60px 20px;
+
+        gap: 35px;
+    }
+
+    .about-image {
+        height: auto;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .speech p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .speech h3 {
+        font-size: 21px;
+    }
+
+
+    /* ================= CONTACT ================= */
+
+    .contact {
+        padding: 60px 20px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    .search-section {
+        padding: 20px;
+    }
+
+    .search-box {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-box input {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .search-box button {
+        width: 100%;
+        padding: 14px;
+        border-radius: 5px;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        padding: 60px 20px 40px;
+        min-height: auto;
+    }
+
+    .footer-top,
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .footer-title h2 {
+        font-size: 38px;
+    }
+
+    .footer-column h4,
+    .location h4 {
+        margin-bottom: 25px;
+    }
+
+    .footer-column p,
+    .location p {
+        font-size: 18px;
+    }
+
+    .footer-line {
+        margin: 50px 0;
+    }
+
+    .copyright {
+        margin-top: 0;
+        font-size: 16px;
+    }
 }
 
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .header {
+        padding: 0 12px;
+    }
+
+    .logo,
+    .logo-ucheson-products {
+        font-size: 16px;
+    }
+
+    .cart-button {
+        font-size: 13px;
+    }
+
+    .menu-button {
+        font-size: 32px;
+    }
+
+    .hero-content {
+        padding: 100px 18px 40px;
+    }
+
+    .hero-small {
+        font-size: 29px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 250px;
+    }
+}
