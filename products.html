@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ucheson Motors | Premium Motorcycle & Keke Parts</title>
+
+<title>Ucheson Motors | Motorcycle & Keke Parts</title>
 
 <style>
+/* =========================================================
+   UCHESON MOTORS — ORIGINAL DESIGN PRESERVED
+   MERGED WITH ADVANCED PRODUCT / MACHINE FEATURES
+   ========================================================= */
+
 :root{
-    --bg:#05080d;
-    --card:#0d131c;
-    --card2:#111923;
-    --line:#202b39;
-    --text:#f5f8ff;
-    --muted:#9aa8ba;
-
-    /* PREMIUM DARK BLUE */
-    --accent:#0b4ea2;
-    --accent2:#082b63;
-    --blue-light:#2585ff;
-
-    --shadow:0 25px 70px rgba(0,0,0,.45);
+    --black:#080808;
+    --black2:#111111;
+    --white:#ffffff;
+    --soft:#f4f4f2;
+    --gray:#777;
+    --line:#deded9;
+    --accent:#d8ff00;
+    --dark-accent:#b8dc00;
+    --max:1440px;
 }
 
 *{
@@ -33,15 +35,20 @@ html{
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--white);
+    color:var(--black);
     overflow-x:hidden;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+body.no-scroll{
+    overflow:hidden;
+}
+
+img,
+video{
+    display:block;
+    width:100%;
 }
 
 button,
@@ -50,1702 +57,2129 @@ select{
     font:inherit;
 }
 
-/* =========================
-   CUSTOM BLUE CURSOR
-========================= */
-
-.cursor-dot,
-.cursor-ring{
-    position:fixed;
-    pointer-events:none;
-    border-radius:50%;
-    transform:translate(-50%,-50%);
-    z-index:99999;
+button{
+    cursor:pointer;
 }
 
-.cursor-dot{
-    width:7px;
-    height:7px;
-    background:#ffffff;
-    box-shadow:
-        0 0 8px #ffffff,
-        0 0 18px #1675ff,
-        0 0 30px #0b4ea2;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-.cursor-ring{
-    width:44px;
-    height:44px;
-    border:1px solid #2585ff;
-    box-shadow:0 0 18px rgba(11,78,162,.3);
-    transition:
-        width .22s ease,
-        height .22s ease,
-        border-color .22s ease,
-        background .22s ease,
-        box-shadow .22s ease;
-}
-
-.cursor-ring.active{
-    width:68px;
-    height:68px;
-    border-color:#ffffff;
-    background:rgba(11,78,162,.12);
-    box-shadow:
-        0 0 20px rgba(37,133,255,.45),
-        inset 0 0 20px rgba(37,133,255,.08);
-}
-
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+   ========================================================= */
 
-header{
+.um-header{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:76px;
-    z-index:5000;
+    height:82px;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+    color:white;
+}
 
+.um-header.scrolled{
+    background:rgba(255,255,255,.96);
+    color:#080808;
+    border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.um-header-inner{
+    width:min(var(--max), calc(100% - 70px));
+    margin:auto;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    padding:0 5%;
-
-    background:rgba(5,8,13,.75);
-    border-bottom:1px solid rgba(37,133,255,.12);
-
-    backdrop-filter:blur(18px);
 }
 
-.logo{
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.logo span{
-    color:#2585ff;
-}
-
-nav{
+.um-logo{
     display:flex;
     align-items:center;
-    gap:30px;
-}
-
-nav a{
-    position:relative;
-    font-size:14px;
+    gap:11px;
+    font-size:20px;
     font-weight:800;
-    color:#d9e1ec;
-    transition:.25s;
+    letter-spacing:-.7px;
 }
 
-nav a:hover{
-    color:#4b9aff;
+.um-logo-mark{
+    width:34px;
+    height:34px;
+    border:2px solid currentColor;
+    display:grid;
+    place-items:center;
+    font-size:13px;
+    font-weight:900;
 }
 
-nav a::after{
+.um-nav{
+    display:flex;
+    align-items:center;
+    gap:34px;
+}
+
+.um-nav a{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    position:relative;
+}
+
+.um-nav a::after{
     content:"";
     position:absolute;
     left:0;
-    bottom:-8px;
+    bottom:-7px;
     width:0;
     height:2px;
-    background:#2585ff;
+    background:currentColor;
     transition:.25s;
 }
 
-nav a:hover::after{
+.um-nav a:hover::after{
     width:100%;
 }
 
-.cart-btn{
+.um-header-actions{
     display:flex;
     align-items:center;
-    gap:9px;
-
-    border:1px solid rgba(37,133,255,.5);
-    background:linear-gradient(135deg,#0b4ea2,#082b63);
-    color:#fff;
-
-    padding:12px 17px;
-    border-radius:12px;
-
-    cursor:pointer;
-    font-weight:900;
-
-    box-shadow:0 10px 30px rgba(11,78,162,.25);
-    transition:.25s;
+    gap:12px;
 }
 
-.cart-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 15px 35px rgba(11,78,162,.4);
-}
-
-.cart-count{
-    min-width:22px;
-    height:22px;
-
+.um-icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid currentColor;
+    background:transparent;
+    color:inherit;
     display:grid;
     place-items:center;
-
-    background:white;
-    color:#082b63;
-
-    border-radius:50%;
-    font-size:12px;
+    font-size:17px;
 }
 
-/* =========================
+.um-cart-count{
+    position:absolute;
+    margin-left:22px;
+    margin-top:-25px;
+    min-width:17px;
+    height:17px;
+    border-radius:50%;
+    background:var(--accent);
+    color:#000;
+    font-size:9px;
+    font-weight:900;
+    display:grid;
+    place-items:center;
+}
+
+.um-menu-btn{
+    display:none;
+}
+
+/* =========================================================
    HERO
-========================= */
+   ========================================================= */
 
-.hero{
-    min-height:100vh;
+.um-hero{
+    height:100svh;
+    min-height:650px;
     position:relative;
-    display:flex;
-    align-items:center;
-
+    background:#080808;
+    color:#fff;
     overflow:hidden;
 }
 
-.hero-video{
+.um-hero-media{
     position:absolute;
     inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-    z-index:0;
-
-    filter:
-        brightness(.45)
-        contrast(1.1)
-        saturate(.9);
 }
 
-.hero::after{
-    content:"";
+.um-hero-media video,
+.um-hero-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.um-hero-overlay{
     position:absolute;
     inset:0;
-    z-index:1;
-
     background:
         linear-gradient(
             90deg,
-            #02050af5 0%,
-            #02050acb 42%,
-            #02050a40 75%,
-            #02050a10
+            rgba(0,0,0,.72) 0%,
+            rgba(0,0,0,.35) 42%,
+            rgba(0,0,0,.08) 75%
         );
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-
-    width:min(850px,90%);
-    margin-left:7%;
-    padding-top:80px;
+.um-hero-content{
+    position:absolute;
+    left:max(35px, calc((100vw - var(--max))/2));
+    bottom:100px;
+    max-width:800px;
 }
 
-.hero-small{
-    display:inline-block;
+.um-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:800;
+    margin-bottom:25px;
+}
 
-    color:#4b9aff;
-    font-size:13px;
+.um-eyebrow span{
+    width:38px;
+    height:2px;
+    background:var(--accent);
+}
+
+.um-hero h1{
+    font-size:clamp(60px,9vw,150px);
+    line-height:.82;
+    letter-spacing:-7px;
+    max-width:900px;
+    margin-bottom:35px;
+}
+
+.um-hero h1 em{
+    font-style:normal;
+    color:var(--accent);
+}
+
+.um-hero-description{
+    max-width:470px;
+    font-size:16px;
+    line-height:1.7;
+    color:#ddd;
+    margin-bottom:35px;
+}
+
+.um-btn{
+    border:0;
+    padding:17px 25px;
+    font-size:12px;
+    text-transform:uppercase;
     font-weight:900;
-    letter-spacing:4px;
+    letter-spacing:1.2px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    transition:.25s;
+}
 
+.um-btn-dark{
+    background:#000;
+    color:#fff;
+}
+
+.um-btn-light{
+    background:#fff;
+    color:#000;
+}
+
+.um-btn-accent{
+    background:var(--accent);
+    color:#000;
+}
+
+.um-btn:hover{
+    transform:translateY(-2px);
+}
+
+.um-scroll{
+    position:absolute;
+    right:45px;
+    bottom:38px;
+    writing-mode:vertical-rl;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:.75;
+}
+
+/* =========================================================
+   INTRO STRIP
+   ========================================================= */
+
+.um-intro{
+    background:var(--accent);
+    padding:23px 30px;
+    overflow:hidden;
+}
+
+.um-intro-track{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    white-space:nowrap;
+    font-size:12px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.um-intro-track span::before{
+    content:"✦";
+    margin-right:50px;
+}
+
+/* =========================================================
+   FIND PART
+   ========================================================= */
+
+.um-find{
+    background:#f3f3ef;
+    padding:130px 30px;
+}
+
+.um-container{
+    width:min(var(--max),100%);
+    margin:auto;
+}
+
+.um-section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:55px;
+}
+
+.um-section-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-weight:900;
     margin-bottom:18px;
 }
 
-.hero h1{
-    font-size:clamp(50px,8vw,110px);
-    line-height:.88;
+.um-section-head h2{
+    font-size:clamp(45px,6vw,90px);
+    line-height:.9;
     letter-spacing:-5px;
-    font-weight:1000;
-
-    margin-bottom:28px;
+    max-width:750px;
 }
 
-.hero h1 span{
-    display:block;
-    color:#2585ff;
-}
-
-.hero p{
-    max-width:600px;
-
-    color:#c2ccda;
-    font-size:18px;
+.um-section-head p{
+    color:#666;
+    max-width:380px;
     line-height:1.7;
-
-    margin-bottom:34px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.primary-btn,
-.secondary-btn{
-    padding:15px 25px;
-    border-radius:12px;
-    font-weight:900;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.primary-btn{
-    border:1px solid #2585ff;
-    color:white;
-
-    background:linear-gradient(
-        135deg,
-        #0b4ea2,
-        #082b63
-    );
-
-    box-shadow:0 15px 40px rgba(11,78,162,.3);
-}
-
-.secondary-btn{
-    border:1px solid #536175;
-    color:#fff;
-    background:rgba(255,255,255,.04);
-}
-
-.primary-btn:hover,
-.secondary-btn:hover{
-    transform:translateY(-4px);
-}
-
-.hero-stats{
-    display:flex;
-    gap:35px;
-    margin-top:55px;
-}
-
-.stat strong{
-    display:block;
-    font-size:28px;
-}
-
-.stat span{
-    color:#8290a3;
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section{
-    padding:100px 5%;
-}
-
-.section-head{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-    gap:30px;
-    margin-bottom:35px;
-}
-
-.eyebrow{
-    color:#2585ff;
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    margin-bottom:10px;
-}
-
-.section h2{
-    font-size:clamp(34px,5vw,62px);
-    letter-spacing:-2px;
-}
-
-.section-head p{
-    color:var(--muted);
-    max-width:500px;
-    line-height:1.6;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.shop-tools{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-    margin-bottom:28px;
-}
-
-.search-box{
-    position:relative;
-    flex:1;
-    min-width:250px;
-}
-
-.search-box input{
-    width:100%;
-    height:52px;
-
-    background:#0b1119;
-    border:1px solid var(--line);
-    border-radius:12px;
-
-    color:white;
-    outline:none;
-
-    padding:0 18px;
-}
-
-.search-box input:focus{
-    border-color:#2585ff;
-    box-shadow:0 0 0 3px rgba(37,133,255,.08);
-}
-
-select{
-    height:52px;
-
-    background:#0b1119;
-    border:1px solid var(--line);
-    border-radius:12px;
-
-    color:white;
-    padding:0 18px;
-    outline:none;
-}
-
-.filters{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-bottom:35px;
-}
-
-.filter{
-    border:1px solid var(--line);
-    background:#0a1017;
-    color:#aab5c4;
-
-    padding:10px 15px;
-    border-radius:999px;
-
-    cursor:pointer;
-    transition:.25s;
-}
-
-.filter.active,
-.filter:hover{
-    background:#0b4ea2;
-    border-color:#2585ff;
-    color:white;
-}
-
-/* =========================
-   PRODUCT GRID
-========================= */
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.product{
-    background:linear-gradient(
-        145deg,
-        #111923,
-        #080d14
-    );
-
-    border:1px solid #1d2937;
-    border-radius:20px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    box-shadow:0 15px 45px rgba(0,0,0,.25);
-
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
-}
-
-.product:hover{
-    transform:translateY(-8px);
-    border-color:rgba(37,133,255,.55);
-
-    box-shadow:
-        0 25px 65px rgba(0,0,0,.45),
-        0 0 35px rgba(11,78,162,.08);
-}
-
-.product-image{
-    height:250px;
-    position:relative;
-    overflow:hidden;
-    background:#080c12;
-}
-
-.product-image img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transition:
-        transform .5s cubic-bezier(.2,.7,.2,1);
-}
-
-.product:hover .product-image img{
-    transform:scale(1.08);
-}
-
-.product-tag{
-    position:absolute;
-    top:12px;
-    left:12px;
-
-    background:rgba(5,8,13,.85);
-    border:1px solid rgba(37,133,255,.35);
-
-    color:#63a9ff;
-
-    font-size:10px;
-    font-weight:900;
-
-    padding:7px 9px;
-    border-radius:8px;
-
-    backdrop-filter:blur(8px);
-}
-
-.product-info{
-    padding:19px;
-}
-
-.product-category{
-    color:#6e7f95;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    font-weight:800;
-}
-
-.product h3{
-    font-size:18px;
-    margin:8px 0;
-}
-
-.product-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-top:18px;
-}
-
-.price{
-    color:white;
-    font-size:18px;
-    font-weight:900;
-}
-
-.add{
-    border:0;
-    background:#0b4ea2;
-    color:white;
-
-    padding:10px 13px;
-    border-radius:9px;
-
-    cursor:pointer;
-    font-weight:900;
-
-    transition:.25s;
-}
-
-.add:hover{
-    background:#2585ff;
-    transform:scale(1.04);
-}
-
-/* =========================
-   LOAD MORE
-========================= */
-
-.load-wrap{
-    text-align:center;
-    margin-top:40px;
-}
-
-.load-more{
-    border:1px solid #2585ff;
-    background:transparent;
-    color:white;
-
-    padding:14px 25px;
-    border-radius:10px;
-
-    cursor:pointer;
-    font-weight:900;
-}
-
-.load-more:hover{
-    background:#0b4ea2;
-}
-
-/* =========================
-   FEATURES
-========================= */
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.feature{
-    padding:28px;
-
-    border:1px solid var(--line);
-    border-radius:18px;
-
-    background:#0a1017;
-}
-
-.feature-icon{
-    width:48px;
-    height:48px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:13px;
-
-    background:#082b63;
-    color:#4b9aff;
-
-    margin-bottom:20px;
-
-    font-size:21px;
-}
-
-.feature h3{
-    margin-bottom:9px;
-}
-
-.feature p{
-    color:var(--muted);
-    line-height:1.6;
     font-size:14px;
 }
 
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-    min-height:600px;
-
+.um-selector{
+    background:#fff;
+    padding:45px;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    border:1px solid #ddd;
+}
+
+.um-select-box{
+    padding:15px 22px;
+    border-right:1px solid #ddd;
+}
+
+.um-select-box:last-child{
+    border-right:0;
+}
+
+.um-select-box label{
+    display:block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:900;
+    color:#888;
+    margin-bottom:12px;
+}
+
+.um-select-box select{
+    border:0;
+    outline:0;
+    width:100%;
+    background:white;
+    font-size:16px;
+    font-weight:700;
+}
+
+.um-find-button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================================================
+   MACHINES
+   ========================================================= */
+
+.um-categories{
+    padding:130px 30px;
+}
+
+.um-category-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.um-category{
+    height:650px;
+    position:relative;
+    overflow:hidden;
+    color:white;
+    background:#111;
+    cursor:pointer;
+}
+
+.um-category img{
+    height:100%;
+    object-fit:cover;
+    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.um-category:hover img{
+    transform:scale(1.20);
+}
+
+.um-category-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        0deg,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.05) 65%
+    );
+}
+
+.um-category-content{
+    position:absolute;
+    left:38px;
+    right:38px;
+    bottom:38px;
+}
+
+.um-category-number{
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.7;
+    margin-bottom:15px;
+}
+
+.um-category h3{
+    font-size:clamp(45px,5vw,75px);
+    letter-spacing:-4px;
+    line-height:.9;
+    margin-bottom:25px;
+}
+
+.um-category p{
+    max-width:400px;
+    line-height:1.6;
+    color:#ddd;
+    font-size:14px;
+}
+
+.um-category-action{
+    margin-top:20px;
+    display:inline-flex;
+    padding:11px 15px;
+    background:var(--accent);
+    color:#000;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* =========================================================
+   ONE CLICK / ONE MACHINE SHOWROOM
+   ========================================================= */
+
+.um-moving{
+    background:#080808;
+    color:#fff;
+    padding:140px 30px;
+    overflow:hidden;
+}
+
+.um-moving-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:60px;
+}
+
+.um-moving-head h2{
+    font-size:clamp(50px,7vw,105px);
+    line-height:.85;
+    letter-spacing:-6px;
+}
+
+.um-moving-head p{
+    max-width:380px;
+    color:#999;
+    line-height:1.7;
+}
+
+.um-moving-layout{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
     gap:60px;
     align-items:center;
 }
 
-.about-image{
-    min-height:500px;
-    border-radius:25px;
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(11,78,162,.35),
-            transparent
-        ),
-        url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
+.um-moving-buttons{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid #333;
 }
 
-.about-copy p{
-    color:#aab5c4;
-    line-height:1.9;
-    margin-top:20px;
-}
-
-.about-points{
-    margin-top:30px;
-    display:grid;
-    gap:13px;
-}
-
-.about-points div{
+.um-moving-btn{
+    border:0;
+    border-bottom:1px solid #333;
+    background:transparent;
+    color:#fff;
+    text-align:left;
+    padding:25px 0;
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:-1px;
+    transition:.3s;
     display:flex;
     align-items:center;
-    gap:12px;
-}
-
-.about-points b{
-    color:#4b9aff;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    padding:65px 5% 25px;
-    border-top:1px solid var(--line);
-    background:#03060a;
-}
-
-.footer-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:40px;
-}
-
-.footer-brand p{
-    color:#8593a6;
-    max-width:400px;
-    line-height:1.7;
-    margin-top:15px;
-}
-
-footer h4{
-    margin-bottom:15px;
-}
-
-footer ul{
-    list-style:none;
-}
-
-footer li{
-    margin:11px 0;
-    color:#8d9aac;
-    font-size:14px;
-}
-
-footer li:hover{
-    color:#4b9aff;
-}
-
-.copyright{
-    border-top:1px solid #151e29;
-    margin-top:50px;
-    padding-top:22px;
-
-    color:#647286;
-    font-size:12px;
-
-    display:flex;
     justify-content:space-between;
 }
 
-/* =========================
-   CART DRAWER
-========================= */
+.um-moving-btn span{
+    color:#666;
+    font-size:12px;
+    letter-spacing:2px;
+}
 
-.cart-overlay{
+.um-moving-btn:hover,
+.um-moving-btn.active{
+    color:var(--accent);
+    padding-left:15px;
+}
+
+.um-flip-stage{
+    perspective:1400px;
+    width:100%;
+}
+
+.um-flip-card{
+    width:100%;
+    min-height:600px;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.um-flip-card.flipping{
+    transform:rotateY(180deg);
+}
+
+.um-flip-face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    overflow:hidden;
+    background:#111;
+}
+
+.um-flip-face img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.um-flip-front::after,
+.um-flip-back::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        0deg,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.05) 70%
+    );
+}
+
+.um-flip-label{
+    position:absolute;
+    z-index:3;
+    left:35px;
+    bottom:30px;
+    font-size:35px;
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.um-flip-back{
+    transform:rotateY(180deg);
+}
+
+/* =========================================================
+   FEATURED MACHINE
+   ========================================================= */
+
+.um-machine{
+    background:#080808;
+    color:white;
+    padding:140px 30px;
+}
+
+.um-machine-layout{
+    display:grid;
+    grid-template-columns:45% 55%;
+    min-height:700px;
+}
+
+.um-machine-copy{
+    padding:60px 50px 60px 0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.um-machine-copy h2{
+    font-size:clamp(55px,6vw,100px);
+    line-height:.85;
+    letter-spacing:-6px;
+    margin-bottom:35px;
+}
+
+.um-machine-copy p{
+    color:#aaa;
+    max-width:430px;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+.um-spec-list{
+    border-top:1px solid #333;
+    margin-bottom:40px;
+}
+
+.um-spec{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #333;
+    padding:17px 0;
+    font-size:13px;
+}
+
+.um-spec span:first-child{
+    color:#777;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.um-spec span:last-child{
+    font-weight:800;
+}
+
+.um-machine-image{
+    position:relative;
+    min-height:650px;
+    overflow:hidden;
+}
+
+.um-machine-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.um-products{
+    padding:140px 30px;
+    background:#fff;
+}
+
+.um-products-toolbar{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+    margin-bottom:45px;
+}
+
+.um-search{
+    width:340px;
+    border-bottom:1px solid #222;
+    display:flex;
+    align-items:center;
+}
+
+.um-search input{
+    width:100%;
+    border:0;
+    outline:0;
+    padding:15px 0;
+    font-size:14px;
+}
+
+.um-filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.um-filter{
+    border:1px solid #ccc;
+    background:white;
+    padding:11px 15px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.um-filter.active,
+.um-filter:hover{
+    background:#000;
+    color:#fff;
+    border-color:#000;
+}
+
+.um-sort{
+    border:1px solid #ccc;
+    padding:11px 15px;
+    background:#fff;
+    font-size:11px;
+}
+
+.um-product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:#ddd;
+    border:1px solid #ddd;
+}
+
+.um-product{
+    background:#fff;
+    position:relative;
+    min-width:0;
+    cursor:pointer;
+    transition:transform .3s ease;
+}
+
+.um-product:hover{
+    z-index:2;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+.um-product-media{
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#eee;
+    position:relative;
+}
+
+.um-product-media img,
+.um-product-media video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1);
+}
+
+.um-product:hover .um-product-media img,
+.um-product:hover .um-product-media video{
+    transform:scale(1.06);
+}
+
+.um-product-tag{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#fff;
+    padding:7px 9px;
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    z-index:2;
+}
+
+.um-product-info{
+    padding:22px;
+}
+
+.um-product-category{
+    color:#888;
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:8px;
+}
+
+.um-product-name{
+    font-size:20px;
+    letter-spacing:-.7px;
+    margin-bottom:12px;
+}
+
+.um-product-description{
+    color:#777;
+    font-size:12px;
+    line-height:1.6;
+    min-height:38px;
+    margin-bottom:15px;
+}
+
+.um-product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.um-price{
+    font-size:15px;
+    font-weight:900;
+}
+
+.um-quick{
+    border:1px solid #ccc;
+    background:#fff;
+    padding:9px 12px;
+    font-size:9px;
+    text-transform:uppercase;
+    font-weight:900;
+}
+
+.um-quick:hover{
+    background:#000;
+    color:#fff;
+}
+
+/* =========================================================
+   PRODUCT DETAIL
+   ========================================================= */
+
+.um-detail{
+    background:#f3f3ef;
+    padding:140px 30px;
+}
+
+.um-detail-layout{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:70px;
+    align-items:start;
+}
+
+.um-detail-gallery{
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:15px;
+}
+
+.um-detail-thumbs{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.um-thumb{
+    border:1px solid #ddd;
+    background:#fff;
+    padding:0;
+    aspect-ratio:1;
+    overflow:hidden;
+}
+
+.um-thumb.active{
+    border:2px solid #000;
+}
+
+.um-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.um-main-photo{
+    aspect-ratio:1/1;
+    background:#fff;
+    overflow:hidden;
+}
+
+.um-main-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.um-detail-info{
+    padding-top:20px;
+}
+
+.um-detail-info .um-product-category{
+    font-size:10px;
+}
+
+.um-detail-info h2{
+    font-size:clamp(45px,5vw,80px);
+    line-height:.9;
+    letter-spacing:-5px;
+    margin-bottom:25px;
+}
+
+.um-detail-price{
+    font-size:24px;
+    font-weight:900;
+    margin-bottom:30px;
+}
+
+.um-detail-description{
+    color:#666;
+    line-height:1.8;
+    max-width:500px;
+    margin-bottom:35px;
+}
+
+.um-detail-actions{
+    display:flex;
+    gap:10px;
+    margin-bottom:45px;
+}
+
+.um-detail-actions button{
+    flex:1;
+}
+
+.um-detail-table{
+    border-top:1px solid #ccc;
+}
+
+.um-detail-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    border-bottom:1px solid #ccc;
+    padding:16px 0;
+    font-size:13px;
+}
+
+.um-detail-row span:first-child{
+    color:#888;
+}
+
+.um-detail-row span:last-child{
+    font-weight:800;
+}
+
+/* =========================================================
+   SERVICES
+   ========================================================= */
+
+.um-services{
+    padding:140px 30px;
+}
+
+.um-service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid #ccc;
+}
+
+.um-service{
+    padding:45px 30px 45px 0;
+    border-bottom:1px solid #ccc;
+    overflow:hidden;
+}
+
+.um-service:not(:last-child){
+    border-right:1px solid #ccc;
+    padding-right:45px;
+}
+
+.um-service:not(:first-child){
+    padding-left:45px;
+}
+
+.um-service-number{
+    font-size:11px;
+    color:#999;
+    letter-spacing:2px;
+    margin-bottom:40px;
+}
+
+.um-service-media{
+    width:100%;
+    height:230px;
+    margin-bottom:35px;
+    overflow:hidden;
+    background:#eee;
+}
+
+.um-service-media img,
+.um-service-media video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+}
+
+.um-service:hover .um-service-media img,
+.um-service:hover .um-service-media video{
+    transform:scale(1.04);
+}
+
+.um-service h3{
+    font-size:29px;
+    letter-spacing:-1.5px;
+    margin-bottom:18px;
+}
+
+.um-service p{
+    color:#666;
+    line-height:1.7;
+    font-size:14px;
+}
+
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.um-stats{
+    background:#fff;
+    padding:100px 30px;
+}
+
+.um-stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+
+.um-stat{
+    padding:45px 25px;
+    border-right:1px solid #ccc;
+}
+
+.um-stat:last-child{
+    border-right:0;
+}
+
+.um-stat-number{
+    font-size:clamp(45px,5vw,75px);
+    font-weight:900;
+    letter-spacing:-5px;
+    margin-bottom:12px;
+}
+
+.um-stat-label{
+    font-size:10px;
+    color:#777;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:900;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.um-about{
+    background:#111;
+    color:#fff;
+    padding:140px 30px;
+}
+
+.um-about-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:100px;
+    align-items:center;
+}
+
+.um-about-image{
+    aspect-ratio:4/5;
+    overflow:hidden;
+}
+
+.um-about-image img,
+.um-about-image video{
+    height:100%;
+    object-fit:cover;
+}
+
+.um-about-copy h2{
+    font-size:clamp(50px,6vw,95px);
+    line-height:.88;
+    letter-spacing:-6px;
+    margin-bottom:35px;
+}
+
+.um-about-copy p{
+    color:#aaa;
+    max-width:500px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.um-cta{
+    padding:140px 30px;
+    background:var(--accent);
+}
+
+.um-cta h2{
+    font-size:clamp(55px,9vw,140px);
+    line-height:.8;
+    letter-spacing:-8px;
+    max-width:1100px;
+    margin-bottom:50px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.um-footer{
+    background:#080808;
+    color:#fff;
+    padding:75px 30px 35px;
+}
+
+.um-footer-top{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:50px;
+    padding-bottom:70px;
+}
+
+.um-footer-brand h3{
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.um-footer-brand p{
+    color:#888;
+    max-width:340px;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.um-footer-column h4{
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777;
+    margin-bottom:20px;
+}
+
+.um-footer-column a{
+    display:block;
+    font-size:13px;
+    margin-bottom:13px;
+    color:#ccc;
+}
+
+.um-footer-bottom{
+    border-top:1px solid #222;
+    padding-top:25px;
+    display:flex;
+    justify-content:space-between;
+    color:#666;
+    font-size:11px;
+}
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+.um-cart-overlay{
     position:fixed;
     inset:0;
-
-    background:rgba(0,0,0,.65);
-
-    z-index:8000;
-
+    background:rgba(0,0,0,.5);
+    z-index:1900;
     opacity:0;
-    pointer-events:none;
-
-    transition:.3s;
+    visibility:hidden;
+    transition:.25s;
 }
 
-.cart-overlay.open{
+.um-cart-overlay.open{
     opacity:1;
-    pointer-events:auto;
+    visibility:visible;
 }
 
-.cart-drawer{
-    position:absolute;
+.um-cart{
+    position:fixed;
+    z-index:2000;
     right:0;
     top:0;
-
-    width:min(450px,95%);
     height:100%;
-
-    background:#080d14;
-    border-left:1px solid #233247;
-
-    padding:28px;
-
+    width:min(460px,100%);
+    background:white;
     transform:translateX(100%);
-    transition:.4s;
-
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
     display:flex;
     flex-direction:column;
 }
 
-.cart-overlay.open .cart-drawer{
+.um-cart.open{
     transform:translateX(0);
 }
 
-.cart-head{
+.um-cart-head{
+    height:80px;
+    padding:0 25px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-
-    padding-bottom:20px;
-    border-bottom:1px solid var(--line);
+    justify-content:space-between;
+    border-bottom:1px solid #ddd;
 }
 
-.close{
+.um-cart-head h3{
+    font-size:20px;
+}
+
+.um-cart-close{
     border:0;
-    background:transparent;
-    color:white;
-    font-size:28px;
-    cursor:pointer;
+    background:none;
+    font-size:25px;
 }
 
-.cart-items{
+.um-cart-items{
     flex:1;
     overflow:auto;
-    padding:20px 0;
-}
-
-.cart-item{
-    display:grid;
-    grid-template-columns:70px 1fr auto;
-    gap:12px;
-    align-items:center;
-
-    padding:12px 0;
-    border-bottom:1px solid #18212d;
-}
-
-.cart-item img{
-    width:70px;
-    height:60px;
-    object-fit:cover;
-    border-radius:8px;
-}
-
-.cart-item h4{
-    font-size:13px;
-}
-
-.cart-item small{
-    color:#7f8da0;
-}
-
-.remove{
-    border:0;
-    background:transparent;
-    color:#ff6b6b;
-    cursor:pointer;
-}
-
-.cart-total{
-    border-top:1px solid var(--line);
-    padding-top:20px;
-}
-
-.total-line{
-    display:flex;
-    justify-content:space-between;
-    font-size:20px;
-    font-weight:900;
-    margin-bottom:18px;
-}
-
-.checkout{
-    width:100%;
-    padding:15px;
-    border:0;
-    border-radius:11px;
-
-    color:white;
-    font-weight:900;
-
-    background:linear-gradient(
-        135deg,
-        #0b4ea2,
-        #082b63
-    );
-
-    cursor:pointer;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-
-    z-index:9000;
-
-    display:grid;
-    place-items:center;
-
-    background:rgba(0,0,0,.78);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:.3s;
-
     padding:20px;
 }
 
-.modal.open{
-    opacity:1;
-    pointer-events:auto;
-}
-
-.modal-box{
-    width:min(900px,100%);
-    max-height:90vh;
-    overflow:auto;
-
-    background:#0b1119;
-    border:1px solid #26364b;
-    border-radius:22px;
-
+.um-cart-item{
     display:grid;
-    grid-template-columns:1fr 1fr;
-
-    box-shadow:var(--shadow);
-
-    transform:scale(.94);
-    transition:.3s;
+    grid-template-columns:80px 1fr auto;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
 }
 
-.modal.open .modal-box{
-    transform:scale(1);
+.um-cart-item-image{
+    width:80px;
+    height:80px;
+    background:#eee;
 }
 
-.modal-img{
-    min-height:450px;
-}
-
-.modal-img img{
-    width:100%;
+.um-cart-item-image img{
     height:100%;
     object-fit:cover;
 }
 
-.modal-info{
-    padding:35px;
+.um-cart-item h4{
+    font-size:14px;
+    margin-bottom:7px;
 }
 
-.modal-info h2{
-    font-size:35px;
-    margin:10px 0;
+.um-cart-item p{
+    color:#777;
+    font-size:12px;
 }
 
-.modal-info p{
-    color:#9aa8ba;
-    line-height:1.7;
-    margin:20px 0;
-}
-
-.modal-price{
-    font-size:27px;
-    font-weight:900;
-    margin:20px 0;
-}
-
-.modal-close{
-    position:absolute;
-    top:25px;
-    right:30px;
-
+.um-remove{
     border:0;
-    background:rgba(0,0,0,.5);
+    background:none;
+    font-size:11px;
+    color:#999;
+}
 
-    color:white;
-    width:42px;
-    height:42px;
+.um-cart-empty{
+    text-align:center;
+    color:#888;
+    padding:70px 20px;
+    font-size:14px;
+}
 
-    border-radius:50%;
-    cursor:pointer;
+.um-cart-footer{
+    padding:25px;
+    border-top:1px solid #ddd;
+}
 
+.um-cart-total{
+    display:flex;
+    justify-content:space-between;
+    font-weight:900;
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   SEARCH OVERLAY
+   ========================================================= */
+
+.um-search-overlay{
+    position:fixed;
+    inset:0;
+    background:#fff;
+    z-index:2500;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+}
+
+.um-search-overlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.um-search-window{
+    width:min(1000px, calc(100% - 40px));
+    margin:150px auto;
+}
+
+.um-search-close{
+    border:0;
+    background:none;
+    font-size:30px;
+    float:right;
+}
+
+.um-search-window label{
+    display:block;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-weight:900;
+    margin-bottom:20px;
+}
+
+.um-search-window input{
+    width:100%;
+    border:0;
+    border-bottom:2px solid #000;
+    outline:0;
+    font-size:clamp(35px,6vw,80px);
+    letter-spacing:-4px;
+    padding:10px 0 20px;
+}
+
+.um-search-results{
+    margin-top:35px;
+    max-height:55vh;
+    overflow:auto;
+}
+
+/* =========================================================
+   PRODUCT MODAL
+   ========================================================= */
+
+.um-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:3000;
+    opacity:0;
+    visibility:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+    transition:.25s;
+}
+
+.um-modal.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.um-modal-card{
+    width:min(1100px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#fff;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    position:relative;
+}
+
+.um-modal-media{
+    min-height:650px;
+    background:#eee;
+}
+
+.um-modal-media img,
+.um-modal-media video{
+    width:100%;
+    height:100%;
+    min-height:650px;
+    object-fit:cover;
+}
+
+.um-modal-info{
+    padding:55px;
+}
+
+.um-modal-close{
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:5;
+    border:0;
+    background:#fff;
+    width:40px;
+    height:40px;
     font-size:22px;
 }
 
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-
-    z-index:99999;
-
-    background:#0b131e;
-    border:1px solid #285182;
-
-    padding:15px 20px;
-    border-radius:12px;
-
-    transform:translateY(100px);
-    opacity:0;
-
-    transition:.3s;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.4);
+.um-modal-info h2{
+    font-size:clamp(40px,4vw,65px);
+    line-height:.9;
+    letter-spacing:-4px;
+    margin-bottom:20px;
 }
 
-.toast.show{
+.um-modal-price{
+    font-size:23px;
+    font-weight:900;
+    margin-bottom:25px;
+}
+
+.um-modal-info p{
+    color:#666;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.um-modal-specs{
+    border-top:1px solid #ddd;
+    margin-bottom:30px;
+}
+
+/* =========================================================
+   CATEGORY PAGE OVERLAY
+   ========================================================= */
+
+.um-category-page{
+    position:fixed;
+    inset:0;
+    background:#fff;
+    z-index:2800;
+    overflow:auto;
+    transform:translateY(100%);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.um-category-page.open{
     transform:translateY(0);
+}
+
+.um-category-page-head{
+    position:sticky;
+    top:0;
+    z-index:4;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid #ddd;
+    padding:22px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.um-category-page-head h2{
+    font-size:28px;
+    letter-spacing:-1px;
+}
+
+.um-category-close{
+    width:45px;
+    height:45px;
+    border:1px solid #111;
+    background:#fff;
+    font-size:24px;
+}
+
+.um-category-page-body{
+    width:min(var(--max),calc(100% - 60px));
+    margin:auto;
+    padding:80px 0 120px;
+}
+
+.um-category-page-intro{
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    margin-bottom:50px;
+}
+
+.um-category-page-intro h3{
+    font-size:clamp(50px,7vw,100px);
+    line-height:.85;
+    letter-spacing:-6px;
+}
+
+.um-category-page-intro p{
+    max-width:400px;
+    color:#666;
+    line-height:1.7;
+}
+
+/* =========================================================
+   CUSTOM PRODUCT CURSOR
+   ========================================================= */
+
+.um-product-cursor{
+    position:fixed;
+    width:54px;
+    height:54px;
+    border:1px solid #fff;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:5000;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font-size:22px;
+    mix-blend-mode:difference;
+    opacity:0;
+    transform:translate(-50%,-50%);
+    transition:
+        opacity .2s,
+        width .2s,
+        height .2s;
+}
+
+.um-product-cursor.show{
     opacity:1;
 }
 
-/* =========================
+.um-product-cursor.active{
+    width:65px;
+    height:65px;
+}
+
+/* =========================================================
+   REVEAL
+   ========================================================= */
+
+.um-reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.um-reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+/* =========================================================
    MOBILE
-========================= */
+   ========================================================= */
 
-@media(max-width:1100px){
+@media(max-width:1000px){
 
-    .product-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .features{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:800px){
-
-    header{
-        padding:0 20px;
-    }
-
-    nav{
+    .um-nav{
         display:none;
     }
 
-    .hero-content{
-        margin-left:6%;
+    .um-menu-btn{
+        display:grid;
     }
 
-    .hero h1{
-        font-size:60px;
-        letter-spacing:-3px;
+    .um-header-inner{
+        width:calc(100% - 35px);
     }
 
-    .hero-stats{
-        gap:20px;
-        flex-wrap:wrap;
+    .um-hero-content{
+        left:25px;
+        right:25px;
+        bottom:70px;
     }
 
-    .section{
-        padding:75px 20px;
+    .um-hero h1{
+        letter-spacing:-4px;
     }
 
-    .section-head{
-        display:block;
+    .um-section-head{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    .product-grid{
-        grid-template-columns:repeat(2,1fr);
+    .um-selector{
+        grid-template-columns:1fr 1fr;
+        padding:20px;
     }
 
-    .about{
+    .um-select-box{
+        border-right:0;
+        border-bottom:1px solid #ddd;
+    }
+
+    .um-category-grid{
         grid-template-columns:1fr;
     }
 
-    .about-image{
+    .um-category{
+        height:540px;
+    }
+
+    .um-moving-layout{
+        grid-template-columns:1fr;
+    }
+
+    .um-flip-card{
+        min-height:500px;
+    }
+
+    .um-machine-layout{
+        grid-template-columns:1fr;
+    }
+
+    .um-machine-copy{
+        padding-right:0;
+    }
+
+    .um-machine-image{
+        min-height:500px;
+    }
+
+    .um-product-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .um-detail-layout{
+        grid-template-columns:1fr;
+    }
+
+    .um-service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .um-service,
+    .um-service:not(:last-child),
+    .um-service:not(:first-child){
+        padding:35px 0;
+        border-right:0;
+    }
+
+    .um-about-layout{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .um-footer-top{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .um-modal-card{
+        grid-template-columns:1fr;
+    }
+
+    .um-modal-media,
+    .um-modal-media img,
+    .um-modal-media video{
         min-height:350px;
+        height:350px;
     }
 
-    .modal-box{
-        grid-template-columns:1fr;
+    .um-modal-info{
+        padding:35px;
     }
 
-    .modal-img{
-        min-height:300px;
+    .um-stats-grid{
+        grid-template-columns:1fr 1fr;
     }
 
-    .cursor-dot,
-    .cursor-ring{
+    .um-stat{
+        border-bottom:1px solid #ccc;
+    }
+
+    .um-video-box{
+        height:500px;
+    }
+}
+
+@media(max-width:650px){
+
+    .um-header{
+        height:70px;
+    }
+
+    .um-header-actions{
+        gap:5px;
+    }
+
+    .um-icon-btn{
+        width:38px;
+        height:38px;
+    }
+
+    .um-hero{
+        min-height:650px;
+    }
+
+    .um-hero h1{
+        font-size:62px;
+    }
+
+    .um-hero-description{
+        font-size:14px;
+    }
+
+    .um-scroll{
         display:none;
     }
-}
 
-@media(max-width:550px){
-
-    .logo{
-        font-size:17px;
+    .um-intro-track{
+        justify-content:flex-start;
+        font-size:10px;
+        gap:25px;
     }
 
-    .cart-btn{
-        padding:9px 11px;
+    .um-intro-track span::before{
+        margin-right:25px;
     }
 
-    .hero h1{
-        font-size:49px;
+    .um-find,
+    .um-categories,
+    .um-moving,
+    .um-machine,
+    .um-products,
+    .um-detail,
+    .um-services,
+    .um-about,
+    .um-cta{
+        padding-top:90px;
+        padding-bottom:90px;
+        padding-left:20px;
+        padding-right:20px;
     }
 
-    .hero p{
-        font-size:15px;
+    .um-section-head h2{
+        font-size:52px;
+        letter-spacing:-4px;
     }
 
-    .product-grid{
+    .um-selector{
+        grid-template-columns:1fr;
+        padding:10px;
+    }
+
+    .um-select-box{
+        padding:18px 12px;
+    }
+
+    .um-find-button{
+        padding:10px;
+    }
+
+    .um-category{
+        height:470px;
+    }
+
+    .um-category-content{
+        left:25px;
+        right:25px;
+        bottom:25px;
+    }
+
+    .um-category h3{
+        font-size:50px;
+    }
+
+    .um-moving-head{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .um-moving-head h2{
+        font-size:58px;
+    }
+
+    .um-flip-card{
+        min-height:400px;
+    }
+
+    .um-flip-label{
+        font-size:28px;
+    }
+
+    .um-machine-copy h2{
+        font-size:58px;
+    }
+
+    .um-product-grid{
         grid-template-columns:1fr;
     }
 
-    .features{
+    .um-products-toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .um-search{
+        width:100%;
+    }
+
+    .um-filters{
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:5px;
+    }
+
+    .um-filter{
+        white-space:nowrap;
+    }
+
+    .um-sort{
+        width:100%;
+    }
+
+    .um-detail-gallery{
+        grid-template-columns:70px 1fr;
+    }
+
+    .um-detail-info h2{
+        font-size:55px;
+    }
+
+    .um-detail-actions{
+        flex-direction:column;
+    }
+
+    .um-footer-top{
         grid-template-columns:1fr;
     }
 
-    .footer-grid{
+    .um-footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .um-cta h2{
+        font-size:64px;
+        letter-spacing:-5px;
+    }
+
+    .um-search-window{
+        margin:110px auto;
+    }
+
+    .um-stats-grid{
         grid-template-columns:1fr;
     }
 
-    .copyright{
-        display:block;
-        line-height:2;
-    }
-}
-/* =====================================================
-   UCHESON MOTORS - MOBILE VERSION
-   ADD THIS AT THE VERY BOTTOM OF YOUR CSS
-===================================================== */
-
-/* Mobile menu button - hidden on desktop */
-.mobile-menu-btn {
-    display: none;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(37, 133, 255, 0.5);
-    border-radius: 10px;
-    background: rgba(11, 78, 162, 0.25);
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    transition: 0.25s ease;
-}
-
-.mobile-menu-btn:hover {
-    background: rgba(37, 133, 255, 0.4);
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 800px) {
-
-    /* HEADER */
-    header {
-        height: 70px;
-        padding: 0 18px;
-        gap: 8px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
+    .um-stat{
+        border-right:0;
     }
 
-    .logo {
-        font-size: 17px;
-        white-space: nowrap;
+    .um-video-section{
+        padding-left:20px;
+        padding-right:20px;
+        padding-bottom:90px;
     }
 
-    .mobile-menu-btn {
-        display: flex;
-        margin-left: auto;
+    .um-video-box{
+        height:400px;
     }
 
-    .cart-btn {
-        padding: 9px 12px;
-        font-size: 13px;
-        white-space: nowrap;
+    .um-video-overlay{
+        padding:25px;
     }
 
-
-    /* MOBILE NAVIGATION */
-
-    header nav {
-        display: flex;
-
-        position: absolute;
-        top: 70px;
-        left: 0;
-
-        width: 100%;
-
-        flex-direction: column;
-        align-items: stretch;
-
-        padding: 10px 20px 20px;
-
-        background: rgba(5, 8, 13, 0.98);
-        backdrop-filter: blur(20px);
-
-        border-bottom: 1px solid rgba(37, 133, 255, 0.25);
-
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-
-        transform: translateY(-15px);
-
-        transition:
-            opacity 0.25s ease,
-            transform 0.25s ease,
-            visibility 0.25s ease;
+    .um-video-overlay h2{
+        font-size:55px;
     }
 
-    header nav.mobile-open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0);
+    .um-category-page-body{
+        width:calc(100% - 40px);
     }
 
-    header nav a {
-        display: block;
-        padding: 16px 5px;
-
-        font-size: 16px;
-
-        border-bottom: 1px solid rgba(255,255,255,0.07);
+    .um-category-page-intro{
+        flex-direction:column;
     }
 
-    header nav a:last-child {
-        border-bottom: none;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        min-height: 100svh;
-        padding-top: 70px;
-    }
-
-    .hero-content {
-        margin-left: 6%;
-        margin-right: 6%;
-        max-width: 90%;
-    }
-
-    .hero h1 {
-        font-size: clamp(42px, 9vw, 60px);
-        line-height: 0.95;
-        letter-spacing: -2px;
-    }
-
-    .hero p {
-        font-size: 15px;
-        line-height: 1.6;
-        max-width: 500px;
-    }
-
-    .hero-stats {
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-
-    /* GENERAL SECTIONS */
-
-    .section {
-        padding: 65px 20px;
-    }
-
-    .section-head {
-        display: block;
-        margin-bottom: 30px;
-    }
-
-    .section-head h2 {
-        font-size: clamp(30px, 8vw, 48px);
-    }
-
-
-    /* PRODUCTS */
-
-    .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 15px;
-    }
-
-    .product-card {
-        min-width: 0;
-    }
-
-    .product-card img {
-        height: 220px;
-    }
-
-
-    /* SEARCH + FILTER */
-
-    .shop-tools {
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .search-box {
-        flex: 1 1 100%;
-        min-width: 0;
-    }
-
-    .shop-tools select {
-        width: 100%;
-    }
-
-
-    /* FEATURES */
-
-    .features {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-
-    /* ABOUT */
-
-    .about {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .about-image {
-        min-height: 350px;
-    }
-
-
-    /* MODAL */
-
-    .modal {
-        padding: 15px;
-    }
-
-    .modal-box {
-        grid-template-columns: 1fr;
-        width: 100%;
-        max-height: 92vh;
-        overflow-y: auto;
-    }
-
-    .modal-img {
-        min-height: 260px;
-        max-height: 330px;
-    }
-
-
-    /* FOOTER */
-
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-
-
-    /* DISABLE CUSTOM CURSOR */
-
-    .cursor-dot,
-    .cursor-ring {
-        display: none !important;
+    .um-category-page-intro h3{
+        font-size:58px;
     }
 }
 
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
-/* =====================================================
-   SMALL PHONES
-===================================================== */
-
-@media (max-width: 550px) {
-
-    /* HEADER */
-
-    header {
-        height: 64px;
-        padding: 0 12px;
-    }
-
-    .logo {
-        font-size: 15px;
-    }
-
-    .mobile-menu-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 21px;
-    }
-
-    .cart-btn {
-        padding: 8px 9px;
-        font-size: 12px;
-    }
-
-    header nav {
-        top: 64px;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        min-height: 100svh;
-    }
-
-    .hero-content {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .hero h1 {
-        font-size: 47px;
-        letter-spacing: -2px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .hero-stats {
-        gap: 15px;
-    }
-
-
-    /* SECTIONS */
-
-    .section {
-        padding: 55px 15px;
-    }
-
-
-    /* PRODUCTS */
-
-    .product-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .product-card img {
-        height: 250px;
-    }
-
-
-    /* SEARCH */
-
-    .shop-tools {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .search-box,
-    .shop-tools select {
-        width: 100%;
-        min-width: 0;
-    }
-
-
-    /* FEATURES */
-
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-
-    /* ABOUT */
-
-    .about-image {
-        min-height: 280px;
-    }
-
-
-    /* CART */
-
-    .cart-drawer {
-        width: 100%;
-        max-width: 100%;
-        padding: 20px;
-    }
-
-    .cart-item {
-        grid-template-columns: 58px 1fr auto;
-        gap: 8px;
-    }
-
-    .cart-item img {
-        width: 58px;
-        height: 58px;
-        object-fit: cover;
-    }
-
-
-    /* PRODUCT MODAL */
-
-    .modal {
-        padding: 8px;
-    }
-
-    .modal-box {
-        border-radius: 15px;
-        max-height: 94vh;
-    }
-
-    .modal-img {
-        min-height: 220px;
-        max-height: 280px;
-    }
-
-    .modal-info {
-        padding: 20px;
-    }
-
-    .modal-info h2 {
-        font-size: 26px;
-    }
-
-
-    /* FOOTER */
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .copyright {
-        display: block;
-        line-height: 2;
-    }
-
-
-    /* CHATBOT */
-
-    #chatbotButton {
-        width: 52px !important;
-        height: 52px !important;
-        right: 12px !important;
-        bottom: 12px !important;
-        font-size: 22px !important;
-    }
-
-    #chatbotFrame {
-        width: calc(100vw - 16px) !important;
-        max-width: calc(100vw - 16px) !important;
-
-        height: calc(100vh - 90px) !important;
-
-        right: 8px !important;
-        bottom: 8px !important;
-
-        border-radius: 15px !important;
-    }
+.um-mobile-menu{
+    position:fixed;
+    inset:0;
+    background:#080808;
+    color:#fff;
+    z-index:1800;
+    padding:110px 30px 40px;
+    transform:translateY(-100%);
+    transition:.4s cubic-bezier(.2,.7,.2,1);
 }
 
-
-/* =====================================================
-   VERY SMALL PHONES
-===================================================== */
-
-@media (max-width: 380px) {
-
-    .logo {
-        font-size: 13px;
-    }
-
-    .cart-btn {
-        font-size: 11px;
-        padding: 7px;
-    }
-
-    .mobile-menu-btn {
-        width: 38px;
-        height: 38px;
-    }
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-    .product-card img {
-        height: 220px;
-    }
+.um-mobile-menu.open{
+    transform:translateY(0);
 }
 
-/* =====================================================
-   MOBILE CHATBOT
-===================================================== */
-
-@media(max-width:550px){
-
-    #chatbotButton{
-
-        width:52px !important;
-        height:52px !important;
-
-        right:12px !important;
-        bottom:12px !important;
-
-        font-size:21px !important;
-
-    }
-
-    #chatbotFrame{
-
-        width:calc(100vw - 16px) !important;
-        max-width:calc(100vw - 16px) !important;
-
-        height:calc(100vh - 85px) !important;
-
-        right:8px !important;
-        bottom:8px !important;
-
-        border-radius:16px !important;
-
-    }
-
+.um-mobile-menu a{
+    display:block;
+    font-size:42px;
+    line-height:1;
+    letter-spacing:-2px;
+    margin-bottom:25px;
 }
-@media(max-width:800px){
-    .chatbot{
-        /* mobile chatbot adjustments */
-    }
+
+.um-mobile-menu small{
+    color:#777;
+    display:block;
+    margin-bottom:35px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:10px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     BLUE CURSOR
-========================= -->
-
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-
-<!-- =========================
+<!-- =========================================================
      HEADER
-========================= -->
+     ========================================================= -->
 
-<header>
+<header class="um-header" id="umHeader">
 
-    <a href="#home" class="logo">
-        UCHESON <span>MOTORS</span>
-    </a>
+    <div class="um-header-inner">
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contactus.html">Contact</a>
-    </nav>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-    ☰
-    </button>
+        <a href="#home" class="um-logo">
+            <span class="um-logo-mark">UM</span>
+            <span>UCHESON MOTORS</span>
+        </a>
 
-    <button class="cart-btn" onclick="openCart()">
-        🛒 Cart
-        <span class="cart-count" id="cartCount">0</span>
-    </button>
+        <nav class="um-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html">uchesonmotors products</a>
+            <a href="explore.html">explore products</a>
+            <a href="contactus.html">contact</a>
+            <a href="aboutus.html">About</a>
+        </nav>
+
+        <div class="um-header-actions">
+
+            <button class="um-icon-btn" id="openSearch" aria-label="Search">
+                ⌕
+            </button>
+
+            <button class="um-icon-btn" id="openCart" aria-label="Cart">
+                🛒
+                <span class="um-cart-count" id="cartCount">0</span>
+            </button>
+
+            <button class="um-icon-btn um-menu-btn" id="openMenu">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
 
 </header>
 
+<!-- =========================================================
+     MOBILE MENU
+     ========================================================= -->
 
-<!-- =========================
+<div class="um-mobile-menu" id="mobileMenu">
+
+    <small>Ucheson Motors</small>
+
+    <a href="#home">Home</a>
+    <a href="#machines">Machines</a>
+    <a href="#products">Parts</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+
+</div>
+
+<!-- =========================================================
      HERO
-========================= -->
+     ========================================================= -->
 
-<section class="hero" id="home">
+<section class="um-hero" id="home">
 
-    <!-- MOVING MOTORCYCLE VIDEO -->
-    <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto">
+    <div class="um-hero-media">
 
-        <source
-            src="images/video.mp4"
-            type="video/mp4">
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=2000&q=90">
 
-    </video>
+            <source src="images/PM.mp4" type="video/mp4">
 
-    <div class="hero-content">
+        </video>
 
-        <div class="hero-small">
-            PREMIUM MOTORCYCLE & KEKE PARTS
+    </div>
+
+    <div class="um-hero-overlay"></div>
+
+    <div class="um-hero-content">
+
+        <div class="um-eyebrow">
+            <span></span>
+            Parts. Machines. Reliability.
         </div>
 
         <h1>
-            RIDE
-            <span>WITH POWER.</span>
+            BUILT FOR<br>
+            THE <em>ROAD.</em>
         </h1>
 
-        <p>
-            Discover premium motorcycle, keke, power-bike and
-            performance spare parts built for riders who demand
-            reliability, style and serious performance.
+        <p class="um-hero-description">
+            Motorcycle and keke machines, genuine replacement parts,
+            dependable components and practical support for the people
+            who keep moving.
         </p>
 
-        <div class="hero-buttons">
+        <a href="#products" class="um-btn um-btn-accent">
+            Explore parts →
+        </a>
 
-            <a href="explore.html" class="primary-btn">
-                Explore Products
-            </a>
+    </div>
 
-            <a href="aboutus.html" class="secondary-btn">
-                Discover Ucheson
-            </a>
+    <div class="um-scroll">
+        Scroll to explore
+    </div>
+
+</section>
+
+<!-- =========================================================
+     TICKER
+     ========================================================= -->
+
+<div class="um-intro">
+
+    <div class="um-intro-track">
+        <span>Motorcycle Parts</span>
+        <span>Keke Parts</span>
+        <span>Power Bikes</span>
+        <span>Machines</span>
+        <span>Workshop Support</span>
+        <span>Ucheson Motors</span>
+    </div>
+
+</div>
+
+<!-- =========================================================
+     FIND YOUR PART
+     ========================================================= -->
+
+<section class="um-find">
+
+    <div class="um-container">
+
+        <div class="um-section-head um-reveal">
+
+            <div>
+
+                <div class="um-section-label">
+                    01 / Find your part
+                </div>
+
+                <h2>
+                    START WITH<br>
+                    YOUR MACHINE.
+                </h2>
+
+            </div>
+
+            <p>
+                Select the type of machine and the system you need.
+                We will take you directly to the relevant parts.
+            </p>
 
         </div>
 
-        <div class="hero-stats">
+        <div class="um-selector um-reveal">
 
-            <div class="stat">
-                <strong>20+</strong>
-                <span>Premium Parts</span>
+            <div class="um-select-box">
+
+                <label>Machine</label>
+
+                <select id="machineSelect">
+                    <option value="">Choose machine</option>
+                    <option value="motorcycle">Motorcycle</option>
+                    <option value="powerbike">Power Bike</option>
+                    <option value="keke">Keke</option>
+                </select>
+
             </div>
 
-            <div class="stat">
-                <strong>24/7</strong>
-                <span>Online Access</span>
+            <div class="um-select-box">
+
+                <label>System</label>
+
+                <select id="systemSelect">
+                    <option value="">Choose system</option>
+                    <option value="braking">Braking</option>
+                    <option value="engine">Engine</option>
+                    <option value="transmission">Transmission</option>
+                    <option value="suspension">Suspension</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="wheels">Wheels</option>
+                </select>
+
             </div>
 
-            <div class="stat">
-                <strong>100%</strong>
-                <span>Rider Focused</span>
+            <div class="um-select-box">
+
+                <label>Part</label>
+
+                <select id="partSelect">
+                    <option value="">Choose part</option>
+                    <option>Brake Pad</option>
+                    <option>Brake Disc</option>
+                    <option>Shock Absorber</option>
+                    <option>Chain</option>
+                    <option>Spark Plug</option>
+                    <option>Piston</option>
+                    <option>Clutch Plate</option>
+                    <option>Wheel Rim</option>
+                    <option>Engine Component</option>
+                </select>
+
+            </div>
+
+            <div class="um-find-button">
+
+                <button class="um-btn um-btn-dark" id="findPart">
+                    Find Parts →
+                </button>
+
             </div>
 
         </div>
@@ -1754,166 +2188,118 @@ footer li:hover{
 
 </section>
 
+<!-- =========================================================
+     MACHINES
+     ========================================================= -->
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+<section class="um-categories" id="machines">
 
-<section class="section" id="products">
+    <div class="um-container">
 
-    <div class="section-head">
+        <div class="um-section-head um-reveal">
 
-        <div>
-            <div class="eyebrow">Our Collection</div>
-            <h2>Premium Parts.</h2>
-        </div>
+            <div>
 
-        <p>
-            Explore motorcycle, keke, power-bike, engine,
-            brake, drive, wheel and tyre products.
-        </p>
+                <div class="um-section-label">
+                    02 / Machines
+                </div>
 
-    </div>
+                <h2>
+                    BUILT FOR<br>
+                    THE WAY YOU MOVE.
+                </h2>
 
-
-    <div class="shop-tools">
-
-        <div class="search-box">
-            <input
-                type="text"
-                id="search"
-                placeholder="Search motorcycle parts, keke parts..."
-            >
-        </div>
-
-        <select id="sort">
-            <option value="default">Sort Products</option>
-            <option value="low">Price: Low to High</option>
-            <option value="high">Price: High to Low</option>
-            <option value="name">Name A-Z</option>
-        </select>
-
-    </div>
-
-
-    <div class="filters">
-
-        <button class="filter active" data-filter="all">
-            All
-        </button>
-
-        <button class="filter" data-filter="motorcycle">
-            Motorcycle
-        </button>
-
-        <button class="filter" data-filter="keke">
-            Keke
-        </button>
-
-        <button class="filter" data-filter="powerbike">
-            Power Bike
-        </button>
-
-        <button class="filter" data-filter="engine">
-            Engine
-        </button>
-
-        <button class="filter" data-filter="brakes">
-            Brakes
-        </button>
-
-        <button class="filter" data-filter="drive">
-            Chain & Drive
-        </button>
-
-        <button class="filter" data-filter="tyres">
-            Tyres
-        </button>
-
-    </div>
-
-
-    <div class="product-grid" id="productGrid"></div>
-
-    <div class="load-wrap">
-        <button class="load-more" id="loadMore">
-            Load More Products
-        </button>
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section class="section" id="services">
-
-    <div class="section-head">
-
-        <div>
-            <div class="eyebrow">Why Ucheson</div>
-            <h2>Built for riders.</h2>
-        </div>
-
-    </div>
-
-
-    <div class="features">
-
-        <div class="feature">
-
-            <div class="feature-icon">⚙</div>
-
-            <h3>Premium Parts</h3>
+            </div>
 
             <p>
-                Carefully selected motorcycle and keke
-                components for demanding riders.
+                Select a machine to explore the products and
+                components available for it.
             </p>
 
         </div>
 
+        <div class="um-category-grid">
 
-        <div class="feature">
+            <article
+                class="um-category um-reveal"
+                onclick="openCategoryPage('motorcycle')">
 
-            <div class="feature-icon">🏍</div>
+                <img
+                    src="https://m.atcdn.co.uk/vms/media/9668a95c451141e3b028029ab24dcf1e.jpg"
+                    alt="Motorcycle">
 
-            <h3>Rider Focused</h3>
+                <div class="um-category-overlay"></div>
 
-            <p>
-                Products selected around real riding,
-                repair and performance needs.
-            </p>
+                <div class="um-category-content">
 
-        </div>
+                    <div class="um-category-number">
+                        MACHINE 01
+                    </div>
 
+                    <h3>MOTOR <br>
+                        CYCLES</h3>
 
-        <div class="feature">
+                    <p>
+                        Parts and components for everyday motorcycles,
+                        commuters and power bikes.
+                    </p>
 
-            <div class="feature-icon">🔍</div>
+                </div>
 
-            <h3>Easy Search</h3>
+            </article>
 
-            <p>
-                Quickly find the exact category or spare
-                part you need.
-            </p>
+            <article
+                class="um-category um-reveal"
+                onclick="openCategoryPage('powerbike')">
 
-        </div>
+                <img
+                    src="images/D2.jpeg"
+                    alt="Power Bike">
 
+                <div class="um-category-overlay"></div>
 
-        <div class="feature">
+                <div class="um-category-content">
 
-            <div class="feature-icon">🛠</div>
+                    <div class="um-category-number">
+                        MACHINE 02
+                    </div>
 
-            <h3>Workshop Ready</h3>
+                    <h3>POWER BIKES</h3>
 
-            <p>
-                Parts suitable for maintenance, replacement
-                and performance upgrades.
-            </p>
+                    <p>
+                        Components for performance-focused motorcycles
+                        and larger road machines.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article
+                class="um-category um-reveal"
+                onclick="openCategoryPage('keke')">
+
+                <img
+                    src="images/K1.jpeg">
+
+                <div class="um-category-overlay"></div>
+
+                <div class="um-category-content">
+
+                    <div class="um-category-number">
+                        MACHINE 03
+                    </div>
+
+                    <h3>KEKE</h3>
+
+                    <p>
+                        Practical components for daily transport,
+                        work and commercial movement.
+                    </p>
+
+                </div>
+
+            </article>
 
         </div>
 
@@ -1921,57 +2307,659 @@ footer li:hover{
 
 </section>
 
+<!-- =========================================================
+     ONE CLICK. ONE MACHINE.
+     ========================================================= -->
 
-<!-- =========================
+<section class="um-moving">
+
+    <div class="um-container">
+
+        <div class="um-moving-head um-reveal">
+
+            <div>
+
+                <div class="um-section-label">
+                    03 / Machines showroom
+                </div>
+
+                <h2>
+                    ONE CLICK.<br>
+                    ONE MACHINE.
+                </h2>
+
+            </div>
+
+            <p>
+                Choose a machine to explore the type of components
+                and systems built around it.
+            </p>
+
+        </div>
+
+        <div class="um-moving-layout">
+
+            <div class="um-moving-buttons">
+
+                <button
+                    class="um-moving-btn active"
+                    data-machine="motorcycle">
+
+                    MOTORCYCLE
+
+                    <span>01</span>
+
+                </button>
+
+                <button
+                    class="um-moving-btn"
+                    data-machine="keke">
+
+                    KEKE
+
+                    <span>02</span>
+
+                </button>
+
+                <button
+                    class="um-moving-btn"
+                    data-machine="engine">
+
+                    ENGINE
+
+                    <span>03</span>
+
+                </button>
+
+                <button
+                    class="um-moving-btn"
+                    data-machine="braking">
+
+                    BRAKING
+
+                    <span>04</span>
+
+                </button>
+
+            </div>
+
+            <div class="um-flip-stage">
+
+                <div class="um-flip-card" id="umFlipCard">
+
+                    <div class="um-flip-face um-flip-front">
+
+                        <img
+                            id="flipFrontImage"
+                            src="https://m.atcdn.co.uk/vms/media/9668a95c451141e3b028029ab24dcf1e.jpg"
+                            alt="Motorcycle">
+
+                        <div
+                            class="um-flip-label"
+                            id="flipFrontLabel">
+                            MOTORCYCLE
+                        </div>
+
+                    </div>
+
+                    <div class="um-flip-face um-flip-back">
+
+                        <img
+                            id="flipBackImage"
+                            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1400&q=90"
+                            alt="Motorcycle parts">
+
+                        <div
+                            class="um-flip-label"
+                            id="flipBackLabel">
+                            EXPLORE PARTS
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FEATURED MACHINE
+     ========================================================= -->
+
+<section class="um-machine">
+
+    <div class="um-container">
+
+        <div class="um-machine-layout">
+
+            <div class="um-machine-copy">
+
+                <div class="um-section-label">
+                    04 / Featured machine
+                </div>
+
+                <h2>
+                    THE DAILY<br>
+                    WORKHORSE.
+                </h2>
+
+                <p>
+                    Every machine has a job to do. Ucheson Motors
+                    focuses on the components that help it do that
+                    job reliably.
+                </p>
+
+                <div class="um-spec-list">
+
+                    <div class="um-spec">
+                        <span>Category</span>
+                        <span>Commercial Keke</span>
+                    </div>
+
+                    <div class="um-spec">
+                        <span>Application</span>
+                        <span>Passenger / Utility</span>
+                    </div>
+
+                    <div class="um-spec">
+                        <span>Parts</span>
+                        <span>Engine / Brake / Drive</span>
+                    </div>
+
+                    <div class="um-spec">
+                        <span>Support</span>
+                        <span>Ucheson Motors</span>
+                    </div>
+
+                </div>
+
+                <a href="images/workshop2.png" class="um-btn um-btn-accent">
+                    View Work Shop →
+                </a>
+
+            </div>
+
+            <div class="um-machine-image">
+
+                <img
+                    src="images/motorcycle workshop.png"
+                    alt="Motorcycle machine">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PRODUCT CATALOG
+     ========================================================= -->
+
+<section class="um-products" id="products">
+
+    <div class="um-container">
+
+        <div class="um-section-head um-reveal">
+
+            <div>
+
+                <div class="um-section-label">
+                    05 / Parts
+                </div>
+
+                <h2>
+                    COMPONENTS<br>
+                    THAT MATTER.
+                </h2>
+
+            </div>
+
+            <p>
+                Browse our expanded motorcycle, power bike and keke
+                spare-parts collection. Click any product for details.
+            </p>
+
+        </div>
+
+        <div class="um-products-toolbar">
+
+            <div class="um-search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="productSearch"
+                    placeholder="Search parts...">
+
+            </div>
+
+            <div class="um-filters">
+
+                <button class="um-filter active" data-filter="all">
+                    All
+                </button>
+
+                <button class="um-filter" data-filter="motorcycle">
+                    Motorcycle
+                </button>
+
+                <button class="um-filter" data-filter="keke">
+                    Keke
+                </button>
+
+                <button class="um-filter" data-filter="braking">
+                    Braking
+                </button>
+
+                <button class="um-filter" data-filter="engine">
+                    Engine
+                </button>
+
+                <button class="um-filter" data-filter="suspension">
+                    Suspension
+                </button>
+
+            </div>
+
+            <select class="um-sort" id="sortProducts">
+
+                <option value="default">Sort</option>
+                <option value="low">Price: Low → High</option>
+                <option value="high">Price: High → Low</option>
+                <option value="name">Name</option>
+
+            </select>
+
+        </div>
+
+        <div
+            class="um-product-grid"
+            id="productGrid">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PRODUCT DETAIL STORY
+     ========================================================= -->
+
+<section class="um-detail">
+
+    <div class="um-container">
+
+        <div class="um-section-head um-reveal">
+
+            <div>
+
+                <div class="um-section-label">
+                    06 / Product detail
+                </div>
+
+                <h2>
+                    KNOW WHAT<br>
+                    YOU'RE BUYING.
+                </h2>
+
+            </div>
+
+            <p>
+                A good parts store should make the important
+                information easy to understand before you buy.
+            </p>
+
+        </div>
+
+        <div class="um-detail-layout">
+
+            <div class="um-detail-gallery">
+
+                <div class="um-detail-thumbs">
+
+                    <button class="um-thumb active">
+
+                        <img
+                            src="images/BM.jpeg"
+                            alt="MOTORCYCLE">
+
+                    </button>
+
+                    <button class="um-thumb">
+
+                        <img
+                            src="images/FMP.jpeg"
+                            alt="Motorcycle part">
+
+                    </button>
+
+                    <button class="um-thumb">
+
+                        <img
+                            src="https://roadburners.lk/motorcycle-engine-parts-and-components.jpg"
+                            alt="Engine">
+
+                    </button>
+
+                </div>
+
+                <div class="um-main-photo">
+
+                    <img
+                        id="detailMainImage"
+                        src="images/dodge.jpeg"
+                        alt="Featured motorcycle part">
+
+                </div>
+
+            </div>
+
+            <div class="um-detail-info">
+
+                <div class="um-product-category">
+                    MOTORCYCLE / BRAKING
+                </div>
+
+                <h2>
+                    PERFORMANCE<br>
+                    BRAKE PAD
+                </h2>
+
+                <div class="um-detail-price">
+                    ₦18,500
+                </div>
+
+                <p class="um-detail-description">
+                    A dependable replacement brake component
+                    designed for everyday motorcycle use.
+                    Built for riders who need predictable braking
+                    performance and straightforward replacement.
+                </p>
+
+                <div class="um-detail-actions">
+
+                    <button
+                        class="um-btn um-btn-dark"
+                        onclick="addProductById(1)">
+                        Add to cart
+                    </button>
+
+                    <button
+                        class="um-btn"
+                        style="background:white;border:1px solid #111"
+                        onclick="openProduct(1)">
+                        Full details
+                    </button>
+
+                </div>
+
+                <div class="um-detail-table">
+
+                    <div class="um-detail-row">
+                        <span>Part type</span>
+                        <span>Brake Pad</span>
+                    </div>
+
+                    <div class="um-detail-row">
+                        <span>Machine</span>
+                        <span>Motorcycle</span>
+                    </div>
+
+                    <div class="um-detail-row">
+                        <span>System</span>
+                        <span>Braking</span>
+                    </div>
+
+                    <div class="um-detail-row">
+                        <span>Condition</span>
+                        <span>New</span>
+                    </div>
+
+                    <div class="um-detail-row">
+                        <span>Availability</span>
+                        <span>Available</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+
+<section class="um-services" id="services">
+
+    <div class="um-container">
+
+        <div class="um-section-head um-reveal">
+
+            <div>
+
+                <div class="um-section-label">
+                    07 / Services
+                </div>
+
+                <h2>
+                    MORE THAN<br>
+                    A PARTS SHOP.
+                </h2>
+
+            </div>
+
+            <p>
+                Ucheson Motors is built around the machine,
+                the person using it and the work that depends
+                on it.
+            </p>
+
+        </div>
+
+        <div class="um-service-grid">
+
+            <article class="um-service um-reveal">
+
+                <div class="um-service-number">
+                    01
+                </div>
+
+                <div class="um-service-media">
+
+                 <video autoplay muted loop playsinline>
+                        <source src="images/video.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <h3>PARTS SOURCING</h3>
+
+                <p>
+                    Find the component you need by machine,
+                    system or part category.
+                </p>
+
+            </article>
+
+            <article class="um-service um-reveal">
+
+                <div class="um-service-number">
+                    02
+                </div>
+
+                <div class="um-service-media">
+
+                    <video autoplay muted loop playsinline>
+                        <source src="images/PM.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <h3>MACHINE SUPPORT</h3>
+
+                <p>
+                    Practical guidance for identifying
+                    replacement components and applications.
+                </p>
+
+            </article>
+
+            <article class="um-service um-reveal">
+
+                <div class="um-service-number">
+                    03
+                </div>
+
+                <div class="um-service-media">
+
+                    <video autoplay muted loop playsinline>
+                        <source src="images/second video.mp4" type="video/mp4">
+                    </video>
+        
+                </div>
+
+                <h3>ENGINE COMPONENTS</h3>
+
+                <p>
+                    Explore engine components and replacement
+                    parts designed around working machines.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     STATS
+     ========================================================= -->
+
+<section class="um-stats">
+
+    <div class="um-container">
+
+        <div class="um-stats-grid">
+
+            <div class="um-stat um-reveal">
+
+                <div class="um-stat-number" data-count="45">
+                    0
+                </div>
+
+                <div class="um-stat-label">
+                    Parts
+                </div>
+
+            </div>
+
+            <div class="um-stat um-reveal">
+
+                <div class="um-stat-number" data-count="5">
+                    0
+                </div>
+
+                <div class="um-stat-label">
+                    Main Categories
+                </div>
+
+            </div>
+
+            <div class="um-stat um-reveal">
+
+                <div class="um-stat-number" data-count="3">
+                    0
+                </div>
+
+                <div class="um-stat-label">
+                    Machine Types
+                </div>
+
+            </div>
+
+            <div class="um-stat um-reveal">
+
+                <div class="um-stat-number">
+                    100%
+                </div>
+
+                <div class="um-stat-label">
+                    Mobility Focus
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
      ABOUT
-========================= -->
+     ========================================================= -->
 
-<section class="section" id="about">
+<section class="um-about" id="about">
 
-    <div class="about">
+    <div class="um-container">
 
-        <div class="about-image"></div>
+        <div class="um-about-layout">
 
-        <div class="about-copy">
+            <div class="um-about-image um-reveal">
 
-            <div class="eyebrow">
-                UCHESON MOTORS
+                <video autoplay muted loop playsinline>
+
+                    <source src="images/NM.mp4" type="video/mp4">
+
+                </video>
+
             </div>
 
-            <h2>
-                More than parts.
-                It's the ride.
-            </h2>
+            <div class="um-about-copy um-reveal">
 
-            <p>
-                Ucheson Motors brings motorcycle and keke
-                spare parts together in one modern marketplace.
-                From engine components and brake systems to
-                chains, wheels and tyres, our collection is
-                designed around performance and reliability.
-            </p>
-
-            <div class="about-points">
-
-                <div>
-                    <b>✓</b>
-                    Motorcycle Spare Parts
+                <div class="um-section-label">
+                    08 / Ucheson Motors
                 </div>
 
-                <div>
-                    <b>✓</b>
-                    Keke / TVS Parts
-                </div>
+                <h2>
+                    BUILT AROUND<br>
+                    REAL PEOPLE.
+                </h2>
 
-                <div>
-                    <b>✓</b>
-                    Power Bike Components
-                </div>
+                <p>
+                    Ucheson Motors is a motorcycle and keke
+                    parts platform focused on making it easier
+                    to find dependable components for machines
+                    used every day.
+                </p>
 
-                <div>
-                    <b>✓</b>
-                    Engine, Brake & Drive Systems
-                </div>
+                <p>
+                    From braking and suspension to engine,
+                    transmission and electrical components,
+                    the goal is simple: make the right part
+                    easier to discover.
+                </p>
+
+                <a href="#products" class="um-btn um-btn-light">
+                    Explore the collection →
+                </a>
 
             </div>
 
@@ -1981,182 +2969,233 @@ footer li:hover{
 
 </section>
 
+<!-- =========================================================
+     CTA
+     ========================================================= -->
 
-<!-- =========================
-     FOOTER
-========================= -->
+<section class="um-cta">
 
-<footer id="contact">
+    <div class="um-container">
 
-    <div class="footer-grid">
-
-        <div class="footer-brand">
-
-            <div class="logo">
-                UCHESON <span>MOTORS</span>
-            </div>
-
-            <p>
-                Premium motorcycle, keke and power-bike
-                spare parts for riders who expect more.
-            </p>
-
+        <div class="um-section-label">
+            Ucheson Motors
         </div>
 
+        <h2>
+            KEEP YOUR<br>
+            MACHINE MOVING.
+        </h2>
 
-        <div>
-
-            <h4>Shop</h4>
-
-            <ul>
-                <li>Motorcycle Parts</li>
-                <li>Keke Parts</li>
-                <li>Power Bike</li>
-                <li>Engine Parts</li>
-            </ul>
-
-        </div>
-
-
-        <div>
-
-            <h4>Services</h4>
-
-            <ul>
-                <li>Parts Supply</li>
-                <li>Performance Parts</li>
-                <li>Workshop Support</li>
-                <li>Product Search</li>
-            </ul>
-
-        </div>
-
-
-        <div>
-
-            <h4>Contact</h4>
-
-            <ul>
-                <li>Ucheson Motors</li>
-                <li>Motorcycle Division</li>
-                <li>Keke Parts Division</li>
-                <li>Customer Support</li>
-            </ul>
-
-        </div>
+        <a href="explore.html" class="um-btn um-btn-dark">
+            Find your part →
+        </a>
 
     </div>
 
+</section>
 
-    <div class="copyright">
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
 
-        <span>
-            © 2026 Ucheson Motors. All Rights Reserved.
-        </span>
+<footer class="um-footer">
 
-        <span>
-            Premium Parts • Premium Ride
-        </span>
+    <div class="um-container">
+
+        <div class="um-footer-top">
+
+            <div class="um-footer-brand">
+
+                <h3>UCHESON<br>MOTORS.</h3>
+
+                <p>
+                    Motorcycle, power bike and keke machines,
+                    replacement parts and practical
+                    automotive support.
+                </p>
+
+            </div>
+
+            <div class="um-footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="aboutus.html">about us</a>
+                <a href="#services">Services</a>
+
+            </div>
+
+            <div class="um-footer-column">
+
+                <h4>Parts</h4>
+
+                <a href="#products">Braking</a>
+                <a href="#products">Engine</a>
+                <a href="#products">Suspension</a>
+                <a href="#products">Transmission</a>
+
+            </div>
+
+            <div class="um-footer-column">
+
+                <h4>Contact</h4>
+
+                <a href="https://web.whatsapp.com/">WhatsApp</a>
+                <a href="https://www.instagram.com/">Instagram</a>
+                <a href="contactus.html">Email</a>
+                <a href="contactus.html">Location</a>
+
+            </div>
+
+        </div>
+
+        <div class="um-footer-bottom">
+
+            <span>
+                © 2026 Ucheson Motors
+            </span>
+
+            <span>
+                Parts • Machines • Reliability
+            </span>
+
+        </div>
 
     </div>
 
 </footer>
 
-
-<!-- =========================
+<!-- =========================================================
      CART
-========================= -->
+     ========================================================= -->
 
-<div class="cart-overlay" id="cartOverlay">
+<div class="um-cart-overlay" id="cartOverlay"></div>
 
-    <div class="cart-drawer">
+<aside class="um-cart" id="cart">
 
-        <div class="cart-head">
+    <div class="um-cart-head">
 
-            <h2>Your Cart</h2>
+        <h3>Your Cart</h3>
 
-            <button
-                class="close"
-                onclick="closeCart()">
-                ×
-            </button>
+        <button class="um-cart-close" id="closeCart">
+            ×
+        </button>
+
+    </div>
+
+    <div class="um-cart-items" id="cartItems">
+
+        <div class="um-cart-empty">
+            Your cart is empty.
+        </div>
+
+    </div>
+
+    <div class="um-cart-footer">
+
+        <div class="um-cart-total">
+
+            <span>Total</span>
+
+            <span id="cartTotal">
+                ₦0
+            </span>
 
         </div>
 
+        <button
+            class="um-btn um-btn-dark"
+            style="width:100%"
+            id="checkoutBtn">
+            Request order →
+        </button>
 
-        <div class="cart-items" id="cartItems"></div>
+    </div>
 
+</aside>
 
-        <div class="cart-total">
+<!-- =========================================================
+     SEARCH
+     ========================================================= -->
 
-            <div class="total-line">
+<div class="um-search-overlay" id="searchOverlay">
 
-                <span>Total</span>
+    <div class="um-search-window">
 
-                <span id="cartTotal">
-                    ₦0
-                </span>
+        <button class="um-search-close" id="closeSearch">
+            ×
+        </button>
 
-            </div>
+        <label>
+            Search Ucheson Motors
+        </label>
 
-            <button
-                class="checkout"
-                onclick="checkout()">
+        <input
+            type="text"
+            id="globalSearch"
+            placeholder="What are you looking for?">
 
-                Proceed to Checkout
-
-            </button>
-
+        <div
+            class="um-search-results"
+            id="searchResults">
         </div>
 
     </div>
 
 </div>
 
-
-<!-- =========================
+<!-- =========================================================
      PRODUCT MODAL
-========================= -->
+     ========================================================= -->
 
-<div class="modal" id="productModal">
+<div class="um-modal" id="productModal">
 
-    <button
-        class="modal-close"
-        onclick="closeModal()">
-        ×
-    </button>
+    <div class="um-modal-card">
 
-    <div class="modal-box">
+        <button class="um-modal-close" id="closeModal">
+            ×
+        </button>
 
-        <div class="modal-img">
-            <img id="modalImage" src="" alt="">
+        <div class="um-modal-media">
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Product">
+
         </div>
 
-        <div class="modal-info">
+        <div class="um-modal-info">
 
             <div
-                class="eyebrow"
+                class="um-product-category"
                 id="modalCategory">
             </div>
 
-            <h2 id="modalTitle"></h2>
+            <h2 id="modalName">
+                Product
+            </h2>
 
             <div
-                class="modal-price"
+                class="um-modal-price"
                 id="modalPrice">
+                ₦0
             </div>
 
-            <p id="modalDescription">
-                Premium quality component selected
-                for motorcycle and keke applications.
-            </p>
+            <p id="modalDescription"></p>
+
+            <div
+                class="um-modal-specs"
+                id="modalSpecs">
+            </div>
 
             <button
-                class="primary-btn"
+                class="um-btn um-btn-dark"
+                style="width:100%"
                 id="modalAdd">
-
-                Add To Cart
-
+                Add to cart
             </button>
 
         </div>
@@ -2165,459 +3204,1037 @@ footer li:hover{
 
 </div>
 
+<!-- =========================================================
+     CATEGORY PAGE
+     ========================================================= -->
 
-<!-- =========================
-     TOAST
-========================= -->
+<div class="um-category-page" id="categoryPage">
 
-<div class="toast" id="toast"></div>
+    <div class="um-category-page-head">
 
+        <h2 id="categoryPageTitle">
+            Ucheson Motors
+        </h2>
+
+        <button
+            class="um-category-close"
+            onclick="closeCategoryPage()">
+            ×
+        </button>
+
+    </div>
+
+    <div class="um-category-page-body">
+
+        <div class="um-category-page-intro">
+
+            <h3 id="categoryPageHeading">
+                MACHINE
+            </h3>
+
+            <p id="categoryPageDescription">
+                Explore compatible products and components.
+            </p>
+
+        </div>
+
+        <div
+            class="um-product-grid"
+            id="categoryProductGrid">
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     PRODUCT CURSOR
+     ========================================================= -->
+
+<div class="um-product-cursor" id="productCursor">
+    +
+</div>
 
 <script>
 
-/* =====================================
+/* =========================================================
    PRODUCT DATABASE
-===================================== */
+   45 PRODUCTS
+   ========================================================= */
 
 const products = [
 
+/* ---------------- MOTORCYCLE ---------------- */
+
 {
     id:1,
-    name:"Premium Motorcycle Engine Block",
-    category:"engine",
-    type:"motorcycle",
-    price:185000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_Engine_Block.jpg"
+    name:"Performance Brake Pad",
+    category:"braking",
+    machine:"motorcycle",
+    price:18500,
+    image:"images/D2.jpeg",
+    description:"Dependable replacement brake component for everyday motorcycle use.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:2,
-    name:"Heavy Duty Motorcycle Chain",
-    category:"drive",
-    type:"motorcycle",
-    price:28500,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_chain.jpg"
+    name:"Motorcycle Engine Assembly",
+    category:"engine",
+    machine:"motorcycle",
+    price:68000,
+    image:"https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1000&q=90",
+    description:"Replacement motorcycle engine component for practical road applications.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:3,
-    name:"Premium Front Brake Disc",
-    category:"brakes",
-    type:"motorcycle",
-    price:22000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Disc_brake.jpg"
+    name:"Adjustable Shock Absorber",
+    category:"suspension",
+    machine:"motorcycle",
+    price:32000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Adjustable replacement suspension component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:4,
-    name:"Motorcycle Performance Clutch",
-    category:"drive",
-    type:"motorcycle",
-    price:42000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_clutch.jpg"
+    name:"Motorcycle Body Component",
+    category:"body",
+    machine:"motorcycle",
+    price:26000,
+    image:"images/dodge.jpeg",
+    description:"Replacement body component for motorcycle applications.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Body",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:5,
-    name:"Motorcycle Wheel & Rim",
-    category:"motorcycle",
-    type:"motorcycle",
-    price:55000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorbike_wheels_in_Wako.jpg"
+    name:"Motorcycle Drive Assembly",
+    category:"transmission",
+    machine:"motorcycle",
+    price:42000,
+    image:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=90",
+    description:"Drive component for everyday motorcycle operation.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Transmission",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:6,
-    name:"Motorcycle Wheel Close-Up",
-    category:"motorcycle",
-    type:"motorcycle",
-    price:58000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_wheel_close_up.jpg"
+    name:"Motorcycle Engine Components",
+    category:"engine",
+    machine:"motorcycle",
+    price:45000,
+    image:"https://roadburners.lk/motorcycle-engine-parts-and-components.jpg",
+    description:"Engine replacement components for motorcycle systems.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:7,
-    name:"Performance Motorcycle Tyre",
-    category:"tyres",
-    type:"motorcycle",
-    price:36000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_tire_in_tire_warmer_%282%29.jpg"
+    name:"Motorcycle Spare Parts Set",
+    category:"parts",
+    machine:"motorcycle",
+    price:38000,
+    image:"https://eauto.co.in/cdn/shop/files/eauto-hero-spares-mobile_800x.jpg?v=1784090664",
+    description:"General motorcycle spare-parts collection.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"General",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:8,
-    name:"Wheel With Disc Brake",
-    category:"brakes",
-    type:"motorcycle",
-    price:47000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Wire_motorcycle_wheel_with_disc_brake.jpg"
+    name:"Heavy Duty Motorcycle Component",
+    category:"transmission",
+    machine:"motorcycle",
+    price:51000,
+    image:"https://www.cens.com/cens/supplier/14853/product/60775/BIG.jpg",
+    description:"Heavy-duty motorcycle replacement component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Transmission",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:9,
-    name:"Motorcycle Engine Assembly",
-    category:"engine",
-    type:"motorcycle",
-    price:195000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_engine_19_2012.jpg"
+    name:"Motorcycle Wheel Component",
+    category:"wheels",
+    machine:"motorcycle",
+    price:36000,
+    image:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=1200&q=90",
+    description:"Replacement wheel component for motorcycles.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Wheels",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
+
+/* ---------------- KEKE ---------------- */
 
 {
     id:10,
-    name:"High Performance Engine",
-    category:"engine",
-    type:"powerbike",
-    price:260000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_engine_2009.jpg"
+    name:"Keke Brake Component",
+    category:"braking",
+    machine:"keke",
+    price:41000,
+    image:"https://down-ph.img.susercontent.com/file/8b69e86c0edfe7b07e279bf9e0853bc2",
+    description:"Replacement braking component for commercial keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:11,
-    name:"Power Bike Engine",
-    category:"engine",
-    type:"powerbike",
-    price:290000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_engine_2010.jpg"
+    name:"Keke Front Wheel Hub",
+    category:"wheels",
+    machine:"keke",
+    price:52000,
+    image:"images/wheelhub.jpeg",
+    description:"Front wheel hub component for keke applications.",
+    specs:{
+        Machine:"Keke",
+        System:"Wheels",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:12,
-    name:"Power Bike Brake Disc",
-    category:"brakes",
-    type:"powerbike",
-    price:62000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Disc_brake_of_motorbike_Honda_CBR_1000_%282023%29.jpg"
+    name:"Keke Body Spare Part",
+    category:"body",
+    machine:"keke",
+    price:34000,
+    image:"https://s.alicdn.com/%40sc04/kf/H685bb03fb7964f8c9a097ad27e0c5e48x/CQHZJ-Wholesale-Appearance-Parts-Tricycle-Spare-Parts-Tuktuk-Taxi-for-Bajaj-RE225-RE205.jpg",
+    description:"Replacement exterior component for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Body",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:13,
-    name:"Motorcycle Brake Detail",
-    category:"brakes",
-    type:"motorcycle",
-    price:26000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Detail_of_disk_brake_of_motorbike_Honda_CBR_1000_%282023%29.jpg"
+    name:"Keke Oil Filter Kit",
+    category:"engine",
+    machine:"keke",
+    price:22500,
+    image:"https://s.alicdn.com/%40sc04/kf/Hff1282f002e749c186e68ee3531aa028r/Motorcycle-Parts-Factory-High-quality-BAJAJ-Spare-Parts-Tricycle-Accessories-Tuk-Tuk-Dust-Cover-Oil-Filter-Cylinder-Kits.png",
+    description:"Engine maintenance component for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:14,
-    name:"Keke / TVS King Wheel",
-    category:"keke",
-    type:"keke",
-    price:32000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorbike_wheels_in_Wako_2.jpg"
+    name:"Keke Brake Assembly",
+    category:"braking",
+    machine:"keke",
+    price:41000,
+    image:"https://i.ebayimg.com/images/g/WDoAAOSwDwloKHC7/s-l960.jpg",
+    description:"Replacement keke brake assembly.",
+    specs:{
+        Machine:"Keke",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:15,
-    name:"Keke Heavy Duty Tyre",
-    category:"tyres",
-    type:"keke",
-    price:29000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_tire_in_tire_warmer_%284%29.jpg"
+    name:"Keke Heavy Duty Wheel Hub",
+    category:"wheels",
+    machine:"keke",
+    price:55000,
+    image:"images/heavyduty.jpeg",
+    description:"Heavy-duty wheel hub for commercial keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Wheels",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:16,
-    name:"Keke Drive Wheel",
-    category:"drive",
-    type:"keke",
-    price:51000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Emile_Leray_motorcycle_wheel_drive.jpg"
+    name:"Keke Replacement Body Kit",
+    category:"body",
+    machine:"keke",
+    price:47000,
+    image:"https://down-ph.img.susercontent.com/file/8b69e86c0edfe7b07e279bf9e0853bc2",
+    description:"Replacement body component for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Body",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:17,
-    name:"TVS King Brake System",
-    category:"brakes",
-    type:"keke",
-    price:19000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Disc_brake.jpg"
+    name:"Keke Exterior Component",
+    category:"body",
+    machine:"keke",
+    price:29000,
+    image:"https://s.alicdn.com/%40sc04/kf/H685bb03fb7964f8c9a097ad27e0c5e48x/CQHZJ-Wholesale-Appearance-Parts-Tricycle-Spare-Parts-Tuktuk-Taxi-for-Bajaj-RE225-RE205.jpg",
+    description:"Exterior replacement component.",
+    specs:{
+        Machine:"Keke",
+        System:"Body",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:18,
-    name:"Keke Engine Component",
-    category:"engine",
-    type:"keke",
-    price:235000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_engine_5813_%2813915108692%29.jpg"
+    name:"Keke Spare Parts Kit",
+    category:"parts",
+    machine:"keke",
+    price:58000,
+    image:"https://eauto.co.in/cdn/shop/files/eauto-hero-spares-mobile_800x.jpg?v=1784090664",
+    description:"General spare-parts kit for commercial keke.",
+    specs:{
+        Machine:"Keke",
+        System:"General",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
+
+/* ---------------- BRAKING ---------------- */
 
 {
     id:19,
-    name:"Premium Clutch Assembly",
-    category:"drive",
-    type:"motorcycle",
-    price:45000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_clutch.jpg"
+    name:"Brembo Style Brake Pad",
+    category:"braking",
+    machine:"motorcycle",
+    price:18500,
+    image:"images/bremo.jpeg",
+    description:"Replacement brake pad component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:20,
-    name:"Premium Motorcycle Tyre",
-    category:"tyres",
-    type:"motorcycle",
-    price:39000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Motorcycle_tire_in_tire_warmer_%281%29.jpg"
+    name:"Keke Brake Shoe",
+    category:"braking",
+    machine:"keke",
+    price:21000,
+    image:"https://i.ebayimg.com/images/g/WDoAAOSwDwloKHC7/s-l960.jpg",
+    description:"Brake shoe replacement for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:21,
-    name:"Power Bike Wheel",
-    category:"powerbike",
-    type:"powerbike",
-    price:65000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/A_Sliver_motorcycle_wheel.jpg"
+    name:"Brake Disc Assembly",
+    category:"braking",
+    machine:"motorcycle",
+    price:38000,
+    image:"https://sg-test-11.slatic.net/p/ab6fecf7d30bb36bac29932d7e25cf17.jpg",
+    description:"Replacement brake disc assembly.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:22,
-    name:"Workshop Motorcycle Wheel",
-    category:"motorcycle",
-    type:"motorcycle",
-    price:57000,
-    image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Roue_et_jante_moto_dans_un_atelier_%C3%A0_Cotonou_au_B%C3%A9nin.jpg"
+    name:"Front Brake Pad",
+    category:"braking",
+    machine:"motorcycle",
+    price:17500,
+    image:"images/front.jpeg",
+    description:"Front brake replacement pad.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:23,
-    name:"Performance Motorcycle",
-    category:"powerbike",
-    type:"powerbike",
-    price:980000,
-    image:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85"
+    name:"Keke Heavy Brake Set",
+    category:"braking",
+    machine:"keke",
+    price:44000,
+    image:"https://eauto.co.in/cdn/shop/files/eauto-hero-spares-mobile_800x.jpg?v=1784090664",
+    description:"Heavy-duty braking set for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
 },
 
 {
     id:24,
-    name:"Power Bike Racing Machine",
-    category:"powerbike",
-    type:"powerbike",
-    price:1250000,
-    image:"https://images.unsplash.com/photo-1558980394-0c7d0d3e6a0d?auto=format&fit=crop&w=1000&q=85"
+    name:"Brake Lever Component",
+    category:"braking",
+    machine:"motorcycle",
+    price:15000,
+    image:"https://i.ebayimg.com/images/g/rBMAAOSwosRlEUlO/s-l1200.jpg",
+    description:"Replacement motorcycle brake lever component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:25,
+    name:"Keke Brake Shoe Set",
+    category:"braking",
+    machine:"keke",
+    price:24000,
+    image:"https://i.ebayimg.com/images/g/WDoAAOSwDwloKHC7/s-l960.jpg",
+    description:"Brake shoe set for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:26,
+    name:"Brake Disc Component",
+    category:"braking",
+    machine:"motorcycle",
+    price:39000,
+    image:"https://sg-test-11.slatic.net/p/ab6fecf7d30bb36bac29932d7e25cf17.jpg",
+    description:"Motorcycle brake disc replacement.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:27,
+    name:"Performance Brake Pad Set",
+    category:"braking",
+    machine:"motorcycle",
+    price:19500,
+    image:"images/performance.jpeg",
+    description:"Performance-focused replacement brake pads.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Braking",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+/* ---------------- ENGINE ---------------- */
+
+{
+    id:28,
+    name:"Motorcycle Engine Core",
+    category:"engine",
+    machine:"motorcycle",
+    price:72000,
+    image:"https://www.cens.com/cens/supplier/14853/product/60775/BIG.jpg",
+    description:"Motorcycle engine replacement component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:29,
+    name:"Engine Cylinder Component",
+    category:"engine",
+    machine:"motorcycle",
+    price:48000,
+    image:"https://www.cens.com/cens/supplier/14853/product/60775/BIG.jpg",
+    description:"Engine cylinder replacement component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:30,
+    name:"Motorcycle Engine Parts",
+    category:"engine",
+    machine:"motorcycle",
+    price:45000,
+    image:"https://roadburners.lk/motorcycle-engine-parts-and-components.jpg",
+    description:"Collection of motorcycle engine components.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:31,
+    name:"Keke Engine Cylinder Kit",
+    category:"engine",
+    machine:"keke",
+    price:56000,
+    image:"https://s.alicdn.com/%40sc04/kf/Hff1282f002e749c186e68ee3531aa028r/Motorcycle-Parts-Factory-High-quality-BAJAJ-Spare-Parts-Tricycle-Accessories-Tuk-Tuk-Dust-Cover-Oil-Filter-Cylinder-Kits.png",
+    description:"Cylinder kit for keke engine applications.",
+    specs:{
+        Machine:"Keke",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:32,
+    name:"Engine Component Set",
+    category:"engine",
+    machine:"motorcycle",
+    price:52000,
+    image:"https://roadburners.lk/motorcycle-engine-parts-and-components.jpg",
+    description:"Replacement engine component set.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:33,
+    name:"Keke Engine Parts",
+    category:"engine",
+    machine:"keke",
+    price:62000,
+    image:"https://roadburners.lk/motorcycle-engine-parts-and-components.jpg",
+    description:"Engine replacement components for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:34,
+    name:"Heavy Engine Component",
+    category:"engine",
+    machine:"motorcycle",
+    price:65000,
+    image:"https://i.ebayimg.com/images/g/rBMAAOSwosRlEUlO/s-l1200.jpg",
+    description:"Heavy-duty engine component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:35,
+    name:"Motorcycle Engine Assembly",
+    category:"engine",
+    machine:"motorcycle",
+    price:78000,
+    image:"https://www.cens.com/cens/supplier/14853/product/60775/BIG.jpg",
+    description:"Replacement engine assembly component.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:36,
+    name:"Keke Engine Component",
+    category:"engine",
+    machine:"keke",
+    price:62000,
+    image:"https://s.alicdn.com/%40sc04/kf/Hff1282f002e749c186e68ee3531aa028r/Motorcycle-Parts-Factory-High-quality-BAJAJ-Spare-Parts-Tricycle-Accessories-Tuk-Tuk-Dust-Cover-Oil-Filter-Cylinder-Kits.png",
+    description:"Replacement keke engine component.",
+    specs:{
+        Machine:"Keke",
+        System:"Engine",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+/* ---------------- SUSPENSION ---------------- */
+
+{
+    id:37,
+    name:"CNC Adjustable Shock",
+    category:"suspension",
+    machine:"motorcycle",
+    price:42000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Adjustable front motorcycle shock absorber.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:38,
+    name:"Keke Suspension Component",
+    category:"suspension",
+    machine:"keke",
+    price:38000,
+    image:"https://down-ph.img.susercontent.com/file/8b69e86c0edfe7b07e279bf9e0853bc2",
+    description:"Replacement keke suspension component.",
+    specs:{
+        Machine:"Keke",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:39,
+    name:"Heavy Duty Keke Shock",
+    category:"suspension",
+    machine:"keke",
+    price:44000,
+    image:"https://down-ph.img.susercontent.com/file/8b69e86c0edfe7b07e279bf9e0853bc2",
+    description:"Heavy-duty shock absorber for keke.",
+    specs:{
+        Machine:"Keke",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:40,
+    name:"Motorcycle Front Shock",
+    category:"suspension",
+    machine:"motorcycle",
+    price:36000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Front suspension replacement.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:41,
+    name:"Motorcycle Rear Shock",
+    category:"suspension",
+    machine:"motorcycle",
+    price:34000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Rear motorcycle suspension replacement.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:42,
+    name:"Keke Suspension Kit",
+    category:"suspension",
+    machine:"keke",
+    price:47000,
+    image:"https://eauto.co.in/cdn/shop/files/eauto-hero-spares-mobile_800x.jpg?v=1784090664",
+    description:"Keke suspension replacement kit.",
+    specs:{
+        Machine:"Keke",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:43,
+    name:"Motorcycle Suspension Set",
+    category:"suspension",
+    machine:"motorcycle",
+    price:51000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Complete motorcycle suspension component set.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:44,
+    name:"Keke Heavy Duty Shock",
+    category:"suspension",
+    machine:"keke",
+    price:49000,
+    image:"https://down-ph.img.susercontent.com/file/8b69e86c0edfe7b07e279bf9e0853bc2",
+    description:"Heavy-duty keke shock absorber.",
+    specs:{
+        Machine:"Keke",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
+},
+
+{
+    id:45,
+    name:"Performance Suspension Unit",
+    category:"suspension",
+    machine:"motorcycle",
+    price:58000,
+    image:"https://image.made-in-china.com/2f0j00zgbopwdjGmkv/CNC-Motor-Rebound-Adjustable-Shock-Absorber-Front-Motorcycle-Shock-Absorber-Fznz-3.jpg",
+    description:"Performance motorcycle suspension unit.",
+    specs:{
+        Machine:"Motorcycle",
+        System:"Suspension",
+        Condition:"New",
+        Availability:"Available"
+    }
 }
 
 ];
 
-
-/* =====================================
+/* =========================================================
    STATE
-===================================== */
+   ========================================================= */
 
-let currentFilter = "all";
-let searchTerm = "";
-let sortType = "default";
+let cart = JSON.parse(
+    localStorage.getItem("uchesonCart") || "[]"
+);
 
-let visibleProducts = 12;
+let activeFilter = "all";
 
-let cart = [];
-
-
-/* =====================================
-   PRODUCT GRID
-===================================== */
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
 
 const productGrid =
     document.getElementById("productGrid");
 
+const productSearch =
+    document.getElementById("productSearch");
 
-function formatPrice(price){
+const sortProducts =
+    document.getElementById("sortProducts");
 
-    return "₦" + price.toLocaleString();
+const cartElement =
+    document.getElementById("cart");
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+const cartItems =
+    document.getElementById("cartItems");
+
+const cartCount =
+    document.getElementById("cartCount");
+
+const cartTotal =
+    document.getElementById("cartTotal");
+
+const productModal =
+    document.getElementById("productModal");
+
+/* =========================================================
+   MONEY
+   ========================================================= */
+
+function money(value){
+
+    return new Intl.NumberFormat(
+        "en-NG",
+        {
+            style:"currency",
+            currency:"NGN",
+            maximumFractionDigits:0
+        }
+    ).format(value);
 
 }
-
-
-function getFilteredProducts(){
-
-    let result = products.filter(product => {
-
-        const matchesFilter =
-            currentFilter === "all" ||
-            product.category === currentFilter ||
-            product.type === currentFilter;
-
-        const matchesSearch =
-            product.name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-
-        return matchesFilter && matchesSearch;
-
-    });
-
-
-    if(sortType === "low"){
-
-        result.sort((a,b)=>a.price-b.price);
-
-    }
-
-    if(sortType === "high"){
-
-        result.sort((a,b)=>b.price-a.price);
-
-    }
-
-    if(sortType === "name"){
-
-        result.sort((a,b)=>a.name.localeCompare(b.name));
-
-    }
-
-
-    return result;
+function cartMoney(value){
+    return "₦" + Number(value).toLocaleString("en-NG");
 }
 
+/* =========================================================
+   POWER BIKE MATCH
+   ========================================================= */
 
-/* =====================================
+function matchesMachine(product,machine){
+
+    if(machine === "powerbike"){
+        return product.machine === "motorcycle";
+    }
+
+    return product.machine === machine;
+}
+
+/* =========================================================
    RENDER PRODUCTS
-===================================== */
+   ========================================================= */
 
 function renderProducts(){
 
-    const result = getFilteredProducts();
+    let list = [...products];
 
-    productGrid.innerHTML = "";
+    const search =
+        productSearch.value
+        .toLowerCase()
+        .trim();
 
-    const visible =
-        result.slice(0,visibleProducts);
+    if(activeFilter !== "all"){
 
+        list = list.filter(product => {
 
-    visible.forEach(product => {
+            return (
+                product.category === activeFilter ||
+                matchesMachine(product,activeFilter)
+            );
 
-        const card =
-            document.createElement("article");
+        });
 
-        card.className = "product";
+    }
 
-        card.innerHTML = `
+    if(search){
 
-            <div class="product-image pic">
+        list = list.filter(product => {
+
+            return (
+                product.name.toLowerCase().includes(search) ||
+                product.category.toLowerCase().includes(search) ||
+                product.machine.toLowerCase().includes(search) ||
+                product.description.toLowerCase().includes(search)
+            );
+
+        });
+
+    }
+
+    const sort = sortProducts.value;
+
+    if(sort === "low"){
+        list.sort((a,b)=>a.price-b.price);
+    }
+
+    if(sort === "high"){
+        list.sort((a,b)=>b.price-a.price);
+    }
+
+    if(sort === "name"){
+        list.sort((a,b)=>a.name.localeCompare(b.name));
+    }
+
+    if(!list.length){
+
+        productGrid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                padding:80px;
+                text-align:center;
+                background:white;
+                color:#777;
+            ">
+                No matching parts found.
+            </div>
+        `;
+
+        return;
+    }
+
+    productGrid.innerHTML =
+        list.map(createProductCard).join("");
+
+    attachProductCursor();
+
+}
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+
+function createProductCard(product){
+
+    return `
+
+        <article
+            class="um-product"
+            onclick="openProduct(${product.id})">
+
+            <div class="um-product-media">
 
                 <img
                     src="${product.image}"
                     alt="${product.name}"
-                    loading="lazy"
-                    onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80'"
-                >
+                    loading="lazy">
 
-                <div class="product-tag">
-                    PREMIUM
-                </div>
+                <span class="um-product-tag">
+                    ${product.machine === "motorcycle"
+                        ? "Motorcycle"
+                        : "Keke"}
+                </span>
 
             </div>
 
-            <div class="product-info">
+            <div class="um-product-info">
 
-                <div class="product-category">
+                <div class="um-product-category">
                     ${product.category}
                 </div>
 
-                <h3>
+                <div class="um-product-name">
                     ${product.name}
-                </h3>
+                </div>
 
-                <div class="product-bottom">
+                <div class="um-product-description">
+                    ${product.description}
+                </div>
 
-                    <div class="price">
-                        ${formatPrice(product.price)}
+                <div class="um-product-bottom">
+
+                    <div class="um-price">
+                        ${money(product.price)}
                     </div>
 
                     <button
-                        class="add"
-                        onclick="addToCart(${product.id})">
-
-                        + Cart
-
+                        class="um-quick"
+                        onclick="
+                            event.stopPropagation();
+                            addProductById(${product.id})
+                        ">
+                        Add
                     </button>
 
                 </div>
 
             </div>
 
-        `;
+        </article>
 
-
-        card.querySelector(".product-image")
-            .addEventListener("click",()=>{
-
-                openProduct(product.id);
-
-            });
-
-
-        /* CURSOR-FOLLOWING IMAGE ZOOM */
-
-        const pic =
-            card.querySelector(".product-image");
-
-        const img =
-            card.querySelector("img");
-
-
-        pic.addEventListener("mousemove",(e)=>{
-
-            const r =
-                pic.getBoundingClientRect();
-
-            const x =
-                ((e.clientX-r.left)/r.width)*100;
-
-            const y =
-                ((e.clientY-r.top)/r.height)*100;
-
-            img.style.transformOrigin =
-                `${x}% ${y}%`;
-
-            img.style.transform =
-                "scale(1.17)";
-
-        });
-
-
-        pic.addEventListener("mouseleave",()=>{
-
-            img.style.transform =
-                "scale(1)";
-
-        });
-
-
-        productGrid.appendChild(card);
-
-    });
-
-
-    document.getElementById("loadMore").style.display =
-        visibleProducts < result.length
-        ? "inline-block"
-        : "none";
+    `;
 
 }
 
+/* =========================================================
+   FILTERS
+   ========================================================= */
 
-/* =====================================
-   FILTER BUTTONS
-===================================== */
-
-document.querySelectorAll(".filter")
+document
+.querySelectorAll(".um-filter")
 .forEach(button => {
 
     button.addEventListener("click",()=>{
 
         document
-            .querySelectorAll(".filter")
-            .forEach(btn =>
-                btn.classList.remove("active")
-            );
+        .querySelectorAll(".um-filter")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
         button.classList.add("active");
 
-        currentFilter =
+        activeFilter =
             button.dataset.filter;
-
-        visibleProducts = 12;
 
         renderProducts();
 
@@ -2625,63 +4242,124 @@ document.querySelectorAll(".filter")
 
 });
 
+productSearch.addEventListener(
+    "input",
+    renderProducts
+);
 
-/* =====================================
-   SEARCH
-===================================== */
+sortProducts.addEventListener(
+    "change",
+    renderProducts
+);
 
-document.getElementById("search")
-.addEventListener("input",(e)=>{
+/* =========================================================
+   PRODUCT MODAL
+   ========================================================= */
 
-    searchTerm = e.target.value;
-
-    visibleProducts = 12;
-
-    renderProducts();
-
-});
-
-
-/* =====================================
-   SORT
-===================================== */
-
-document.getElementById("sort")
-.addEventListener("change",(e)=>{
-
-    sortType = e.target.value;
-
-    renderProducts();
-
-});
-
-
-/* =====================================
-   LOAD MORE
-===================================== */
-
-document.getElementById("loadMore")
-.addEventListener("click",()=>{
-
-    visibleProducts += 8;
-
-    renderProducts();
-
-});
-
-
-/* =====================================
-   CART
-===================================== */
-
-function addToCart(id){
+function openProduct(id){
 
     const product =
-        products.find(p=>p.id===id);
+        products.find(
+            item => item.id === id
+        );
+
+    if(!product) return;
+
+    document.getElementById("modalImage").src =
+        product.image;
+
+    document.getElementById("modalCategory").textContent =
+        `${product.machine} / ${product.category}`;
+
+    document.getElementById("modalName").textContent =
+        product.name;
+
+    document.getElementById("modalPrice").textContent =
+        money(product.price);
+
+    document.getElementById("modalDescription").textContent =
+        product.description;
+
+    document.getElementById("modalSpecs").innerHTML =
+        Object.entries(product.specs)
+        .map(([key,value]) => `
+
+            <div class="um-detail-row">
+
+                <span>${key}</span>
+
+                <span>${value}</span>
+
+            </div>
+
+        `).join("");
+
+    document.getElementById("modalAdd").onclick = () => {
+
+        addProductById(product.id);
+
+        closeProduct();
+
+    };
+
+    productModal.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+}
+
+function closeProduct(){
+
+    productModal.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+}
+
+document
+.getElementById("closeModal")
+.addEventListener(
+    "click",
+    closeProduct
+);
+
+productModal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === productModal){
+            closeProduct();
+        }
+
+    }
+);
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "uchesonCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+function addProductById(id){
+
+    const product =
+        products.find(
+            item => item.id === id
+        );
+
+    if(!product) return;
 
     const existing =
-        cart.find(item=>item.id===id);
-
+        cart.find(
+            item => item.id === id
+        );
 
     if(existing){
 
@@ -2696,288 +4374,779 @@ function addToCart(id){
 
     }
 
+    saveCart();
 
-    updateCart();
+    renderCart();
 
-    showToast(
-        product.name + " added to cart"
-    );
+    openCart();
 
 }
-
 
 function removeFromCart(id){
 
     cart =
-        cart.filter(item=>item.id!==id);
-
-    updateCart();
-
-}
-
-
-function updateCart(){
-
-    document.getElementById("cartCount")
-        .textContent =
-        cart.reduce(
-            (sum,item)=>sum+item.qty,
-            0
+        cart.filter(
+            item => item.id !== id
         );
 
+    saveCart();
 
-    const container =
-        document.getElementById("cartItems");
+    renderCart();
 
-    container.innerHTML = "";
+}
 
+function renderCart(){
 
-    if(cart.length===0){
+    if(!cart.length){
 
-        container.innerHTML = `
-            <p style="
-                color:#7f8da0;
-                text-align:center;
-                padding:40px 0;
-            ">
+        cartItems.innerHTML = `
+            <div class="um-cart-empty">
                 Your cart is empty.
-            </p>
-        `;
-
-    }
-
-
-    let total = 0;
-
-
-    cart.forEach(item => {
-
-        total +=
-            item.price * item.qty;
-
-
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "cart-item";
-
-
-        row.innerHTML = `
-
-            <img
-                src="${item.image}"
-                alt="${item.name}"
-            >
-
-            <div>
-
-                <h4>${item.name}</h4>
-
-                <small>
-                    ${item.qty} ×
-                    ${formatPrice(item.price)}
-                </small>
-
             </div>
-
-            <button
-                class="remove"
-                onclick="removeFromCart(${item.id})">
-
-                Remove
-
-            </button>
-
         `;
 
+        cartCount.textContent = "0";
 
-        container.appendChild(row);
-
-    });
-
-
-    document.getElementById("cartTotal")
-        .textContent =
-        formatPrice(total);
-
-}
-
-
-function openCart(){
-
-    document
-        .getElementById("cartOverlay")
-        .classList.add("open");
-
-}
-
-
-function closeCart(){
-
-    document
-        .getElementById("cartOverlay")
-        .classList.remove("open");
-
-}
-
-
-function checkout(){
-
-    if(cart.length===0){
-
-        showToast("Your cart is empty.");
+       cartTotal.textContent =
+       cartMoney(0);
 
         return;
 
     }
 
-    showToast(
-        "Checkout system ready for connection."
-    );
+    cartItems.innerHTML =
+        cart.map(item => `
+
+            <div class="um-cart-item">
+
+                <div class="um-cart-item-image">
+
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}">
+
+                </div>
+
+                <div>
+
+                    <h4>${item.name}</h4>
+
+                    <p>
+                        ${item.qty} × ${money(item.price)}
+                    </p>
+
+                </div>
+
+                <button
+                    class="um-remove"
+                    onclick="removeFromCart(${item.id})">
+                    Remove
+                </button>
+
+            </div>
+
+        `).join("");
+
+    const quantity =
+        cart.reduce(
+            (total,item) =>
+                total + item.qty,
+            0
+        );
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.price * item.qty,
+            0
+        );
+
+    cartCount.textContent =
+        quantity;
+
+    cartTotal.textContent =
+    cartMoney(total);
 
 }
 
+function openCart(){
 
-/* =====================================
-   PRODUCT MODAL
-===================================== */
+    cartElement.classList.add("open");
 
-function openProduct(id){
-
-    const product =
-        products.find(p=>p.id===id);
-
-
-    document.getElementById("modalImage")
-        .src = product.image;
-
-    document.getElementById("modalTitle")
-        .textContent = product.name;
-
-    document.getElementById("modalCategory")
-        .textContent =
-        "PREMIUM " +
-        product.category.toUpperCase();
-
-    document.getElementById("modalPrice")
-        .textContent =
-        formatPrice(product.price);
-
-
-    document.getElementById("modalAdd")
-        .onclick = ()=>{
-
-            addToCart(product.id);
-
-            closeModal();
-
-        };
-
-
-    document
-        .getElementById("productModal")
-        .classList.add("open");
+    cartOverlay.classList.add("open");
 
 }
 
+function closeCart(){
 
-function closeModal(){
+    cartElement.classList.remove("open");
 
-    document
-        .getElementById("productModal")
-        .classList.remove("open");
+    cartOverlay.classList.remove("open");
 
 }
-
 
 document
-    .getElementById("productModal")
-    .addEventListener("click",(e)=>{
+.getElementById("openCart")
+.addEventListener(
+    "click",
+    openCart
+);
 
-        if(e.target.id==="productModal"){
+document
+.getElementById("closeCart")
+.addEventListener(
+    "click",
+    closeCart
+);
 
-            closeModal();
+cartOverlay.addEventListener(
+    "click",
+    closeCart
+);
+
+/* =========================================================
+   CHECKOUT / WHATSAPP
+   ========================================================= */
+
+document
+.getElementById("checkoutBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+        if(!cart.length){
+
+            alert(
+                "Your cart is empty."
+            );
+
+            return;
 
         }
 
-    });
+        let message =
+            "Hello Ucheson Motors,%0A%0A";
 
+        message +=
+            "I would like to request the following:%0A%0A";
 
-/* =====================================
-   TOAST
-===================================== */
+        cart.forEach(item => {
 
-function showToast(message){
+            message +=
+                `• ${item.name} x${item.qty} - ${money(item.price * item.qty)}%0A`;
 
-    const toast =
-        document.getElementById("toast");
+        });
 
-    toast.textContent = message;
+        const total =
+            cart.reduce(
+                (sum,item) =>
+                    sum + item.price * item.qty,
+                0
+            );
 
-    toast.classList.add("show");
+        message +=
+            `%0ATotal: ${money(total)}`;
 
+        /*
+            REPLACE WITH YOUR REAL WHATSAPP NUMBER
+        */
 
-    setTimeout(()=>{
+        const whatsappNumber =
+            "2348053814834";
 
-        toast.classList.remove("show");
+        window.open(
+            `https://wa.me/${whatsappNumber}?text=${message}`,
+            "_blank"
+        );
 
-    },2500);
+    }
+);
 
-}
+/* =========================================================
+   SEARCH OVERLAY
+   ========================================================= */
 
+const searchOverlay =
+    document.getElementById("searchOverlay");
 
-/* =====================================
-   BLUE CUSTOM CURSOR
-===================================== */
+const globalSearch =
+    document.getElementById("globalSearch");
 
-const dot =
-    document.querySelector(".cursor-dot");
+const searchResults =
+    document.getElementById("searchResults");
 
-const ring =
-    document.querySelector(".cursor-ring");
+document
+.getElementById("openSearch")
+.addEventListener(
+    "click",
+    ()=>{
 
+        searchOverlay.classList.add("open");
 
-let mouseX =
-    window.innerWidth/2;
+        setTimeout(
+            ()=>globalSearch.focus(),
+            150
+        );
 
-let mouseY =
-    window.innerHeight/2;
+    }
+);
 
-let ringX = mouseX;
-let ringY = mouseY;
+document
+.getElementById("closeSearch")
+.addEventListener(
+    "click",
+    ()=>{
 
+        searchOverlay.classList.remove("open");
 
-document.addEventListener("mousemove",(e)=>{
+    }
+);
 
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+globalSearch.addEventListener(
+    "input",
+    ()=>{
 
+        const value =
+            globalSearch.value
+            .toLowerCase()
+            .trim();
 
-    dot.style.left =
-        mouseX + "px";
+        if(!value){
 
-    dot.style.top =
-        mouseY + "px";
+            searchResults.innerHTML = "";
+
+            return;
+
+        }
+
+        const results =
+            products.filter(product =>
+
+                product.name
+                    .toLowerCase()
+                    .includes(value) ||
+
+                product.category
+                    .toLowerCase()
+                    .includes(value) ||
+
+                product.machine
+                    .toLowerCase()
+                    .includes(value)
+
+            );
+
+        if(!results.length){
+
+            searchResults.innerHTML = `
+                <div style="
+                    padding:30px 0;
+                    color:#777;
+                ">
+                    No matching products found.
+                </div>
+            `;
+
+            return;
+
+        }
+
+        searchResults.innerHTML =
+            results.map(product => `
+
+                <div
+                    onclick="
+                        openProduct(${product.id});
+                        searchOverlay.classList.remove('open')
+                    "
+                    style="
+                        display:flex;
+                        gap:18px;
+                        align-items:center;
+                        padding:15px 0;
+                        border-bottom:1px solid #ddd;
+                        cursor:pointer;
+                    ">
+
+                    <img
+                        src="${product.image}"
+                        style="
+                            width:70px;
+                            height:70px;
+                            object-fit:cover;
+                        "
+                        alt="${product.name}">
+
+                    <div>
+
+                        <strong>
+                            ${product.name}
+                        </strong>
+
+                        <div
+                            style="
+                                color:#777;
+                                font-size:12px;
+                                margin-top:5px;
+                            ">
+
+                            ${product.machine}
+                            ·
+                            ${money(product.price)}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }
+);
+
+/* =========================================================
+   HEADER SCROLL
+   ========================================================= */
+
+const header =
+    document.getElementById("umHeader");
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        if(window.scrollY > 50){
+
+            header.classList.add("scrolled");
+
+        }else{
+
+            header.classList.remove("scrolled");
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+document
+.getElementById("openMenu")
+.addEventListener(
+    "click",
+    ()=>{
+
+        mobileMenu.classList.toggle("open");
+
+    }
+);
+
+mobileMenu
+.querySelectorAll("a")
+.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        ()=>{
+
+            mobileMenu.classList.remove("open");
+
+        }
+    );
 
 });
 
+/* =========================================================
+   FIND PART
+   ========================================================= */
+
+document
+.getElementById("findPart")
+.addEventListener(
+    "click",
+    ()=>{
+
+        const machine =
+            document.getElementById(
+                "machineSelect"
+            ).value;
+
+        const system =
+            document.getElementById(
+                "systemSelect"
+            ).value;
+
+        const part =
+            document.getElementById(
+                "partSelect"
+            ).value;
+
+        if(!machine && !system && !part){
+
+            document
+            .getElementById("products")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+            return;
+
+        }
+
+        if(system){
+
+            activeFilter = system;
+
+            document
+            .querySelectorAll(".um-filter")
+            .forEach(btn => {
+
+                btn.classList.remove("active");
+
+                if(
+                    btn.dataset.filter ===
+                    system
+                ){
+
+                    btn.classList.add("active");
+
+                }
+
+            });
+
+        }else if(machine){
+
+            activeFilter = machine;
+
+            document
+            .querySelectorAll(".um-filter")
+            .forEach(btn => {
+
+                btn.classList.remove("active");
+
+                if(
+                    btn.dataset.filter ===
+                    machine
+                ){
+
+                    btn.classList.add("active");
+
+                }
+
+            });
+
+        }
+
+        if(part){
+
+            productSearch.value = part;
+
+        }
+
+        renderProducts();
+
+        document
+        .getElementById("products")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+);
+
+/* =========================================================
+   DETAIL GALLERY
+   ========================================================= */
+
+document
+.querySelectorAll(".um-thumb")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            document
+            .querySelectorAll(".um-thumb")
+            .forEach(
+                thumb =>
+                    thumb.classList.remove(
+                        "active"
+                    )
+            );
+
+            button.classList.add("active");
+
+            const image =
+                button.querySelector("img");
+
+            document
+            .getElementById("detailMainImage")
+            .src = image.src;
+
+        }
+    );
+
+});
+
+/* =========================================================
+   ONE CLICK / ONE MACHINE
+   ========================================================= */
+
+const movingData = {
+
+    motorcycle:{
+        frontImage:
+            "images/D2.jpeg",
+        backImage:
+            "images/D3.jpeg",
+        frontLabel:"MOTORCYCLE",
+        backLabel:"MOTORCYCLE PARTS"
+    },
+
+    keke:{
+        frontImage:
+            "images/K2.jpeg",
+        backImage:
+            "images/K3.jpeg",
+        frontLabel:"KEKE",
+        backLabel:"KEKE PARTS"
+    },
+
+    engine:{
+        frontImage:
+            "https://roadburners.lk/motorcycle-engine-parts-and-components.jpg",
+        backImage:
+            "https://www.cens.com/cens/supplier/14853/product/60775/BIG.jpg",
+        frontLabel:"ENGINE",
+        backLabel:"ENGINE COMPONENTS"
+    },
+
+    braking:{
+        frontImage:
+            "images/breaking.jpeg",
+        backImage:
+            "https://i.ebayimg.com/images/g/WDoAAOSwDwloKHC7/s-l960.jpg",
+        frontLabel:"BRAKING",
+        backLabel:"BRAKING PARTS"
+    }
+
+};
+
+const flipCard =
+    document.getElementById("umFlipCard");
+
+const flipFrontImage =
+    document.getElementById("flipFrontImage");
+
+const flipBackImage =
+    document.getElementById("flipBackImage");
+
+const flipFrontLabel =
+    document.getElementById("flipFrontLabel");
+
+const flipBackLabel =
+    document.getElementById("flipBackLabel");
+
+document
+.querySelectorAll(".um-moving-btn")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            const type =
+                button.dataset.machine;
+
+            const data =
+                movingData[type];
+
+            if(!data) return;
+
+            document
+            .querySelectorAll(".um-moving-btn")
+            .forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            flipCard.classList.add("flipping");
+
+            setTimeout(()=>{
+
+                flipBackImage.src =
+                    data.backImage;
+
+                flipBackLabel.textContent =
+                    data.backLabel;
+
+            },350);
+
+            setTimeout(()=>{
+
+                flipFrontImage.src =
+                    data.frontImage;
+
+                flipFrontLabel.textContent =
+                    data.frontLabel;
+
+            },650);
+
+            setTimeout(()=>{
+
+                flipCard.classList.remove("flipping");
+
+            },850);
+
+        }
+    );
+
+});
+
+/* =========================================================
+   CATEGORY PAGE
+   ========================================================= */
+
+const categoryPage =
+    document.getElementById("categoryPage");
+
+const categoryPageTitle =
+    document.getElementById("categoryPageTitle");
+
+const categoryPageHeading =
+    document.getElementById("categoryPageHeading");
+
+const categoryPageDescription =
+    document.getElementById("categoryPageDescription");
+
+const categoryProductGrid =
+    document.getElementById("categoryProductGrid");
+
+function openCategoryPage(category){
+
+    let title = "";
+    let heading = "";
+    let description = "";
+    let filtered = [];
+
+    if(category === "motorcycle"){
+
+        title = "Motorcycle Parts";
+        heading = "MOTORCYCLES";
+        description =
+            "Explore motorcycle braking, engine, suspension, transmission and wheel components.";
+        filtered =
+            products.filter(
+                product =>
+                    product.machine === "motorcycle"
+            );
+
+    }
+
+    if(category === "powerbike"){
+
+        title = "Power Bike Parts";
+        heading = "POWER BIKES";
+        description =
+            "Explore selected components for power bikes and performance motorcycles.";
+        filtered =
+            products.filter(
+                product =>
+                    product.machine === "motorcycle"
+            );
+
+    }
+
+    if(category === "keke"){
+
+        title = "Keke Parts";
+        heading = "KEKE";
+        description =
+            "Explore components for everyday commercial and utility keke machines.";
+        filtered =
+            products.filter(
+                product =>
+                    product.machine === "keke"
+            );
+
+    }
+
+    categoryPageTitle.textContent =
+        title;
+
+    categoryPageHeading.textContent =
+        heading;
+
+    categoryPageDescription.textContent =
+        description;
+
+    categoryProductGrid.innerHTML =
+        filtered
+        .map(createProductCard)
+        .join("");
+
+    categoryPage.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+    attachProductCursor();
+
+}
+
+function closeCategoryPage(){
+
+    categoryPage.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+}
+
+/* =========================================================
+   CUSTOM PRODUCT CURSOR
+   ========================================================= */
+
+const productCursor =
+    document.getElementById("productCursor");
+
+let cursorX = 0;
+let cursorY = 0;
+let currentX = 0;
+let currentY = 0;
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        cursorX = event.clientX;
+        cursorY = event.clientY;
+
+    }
+);
 
 function animateCursor(){
 
-    ringX +=
-        (mouseX-ringX)*.14;
+    currentX +=
+        (cursorX - currentX) * .18;
 
-    ringY +=
-        (mouseY-ringY)*.14;
+    currentY +=
+        (cursorY - currentY) * .18;
 
+    productCursor.style.left =
+        currentX + "px";
 
-    ring.style.left =
-        ringX + "px";
-
-    ring.style.top =
-        ringY + "px";
-
+    productCursor.style.top =
+        currentY + "px";
 
     requestAnimationFrame(
         animateCursor
@@ -2987,216 +5156,196 @@ function animateCursor(){
 
 animateCursor();
 
+function attachProductCursor(){
 
-document.addEventListener("mouseover",(e)=>{
+    document
+    .querySelectorAll(".um-product")
+    .forEach(product => {
 
-    if(
-        e.target.closest(
-            "a,button,input,select,.pic"
-        )
-    ){
+        product.addEventListener(
+            "mouseenter",
+            ()=>{
 
-        ring.classList.add("active");
+                productCursor.classList.add(
+                    "show"
+                );
 
-    }
+                productCursor.classList.add(
+                    "active"
+                );
 
-});
-
-
-document.addEventListener("mouseout",(e)=>{
-
-    if(
-        e.target.closest(
-            "a,button,input,select,.pic"
-        )
-    ){
-
-        ring.classList.remove("active");
-
-    }
-
-});
-
-
-/* =====================================
-   CLOSE CART WHEN CLICKING OUTSIDE
-===================================== */
-
-document
-    .getElementById("cartOverlay")
-    .addEventListener("click",(e)=>{
-
-        if(e.target.id==="cartOverlay"){
-
-            closeCart();
-
-        }
-
-    });
-
-
-/* =====================================
-   INITIALIZE
-===================================== */
-
-renderProducts();
-
-updateCart();
-/* =====================================================
-   UCHESON MOTORS - MOBILE MENU
-===================================================== */
-
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const mainNav = document.getElementById("mainNav");
-
-if (mobileMenuBtn && mainNav) {
-
-    /* OPEN / CLOSE MENU */
-
-    mobileMenuBtn.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        const isOpen = mainNav.classList.toggle("mobile-open");
-
-        mobileMenuBtn.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
+            }
         );
 
-        mobileMenuBtn.textContent = isOpen ? "✕" : "☰";
-    });
+        product.addEventListener(
+            "mouseleave",
+            ()=>{
 
+                productCursor.classList.remove(
+                    "show"
+                );
 
-    /* CLOSE MENU WHEN A LINK IS CLICKED */
+                productCursor.classList.remove(
+                    "active"
+                );
 
-    mainNav.querySelectorAll("a").forEach(function(link) {
-
-        link.addEventListener("click", function() {
-
-            mainNav.classList.remove("mobile-open");
-
-            mobileMenuBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            mobileMenuBtn.textContent = "☰";
-        });
-
-    });
-
-
-    /* CLOSE MENU WHEN CLICKING OUTSIDE */
-
-    document.addEventListener("click", function(event) {
-
-        if (
-            window.innerWidth <= 800 &&
-            mainNav.classList.contains("mobile-open") &&
-            !mainNav.contains(event.target) &&
-            !mobileMenuBtn.contains(event.target)
-        ) {
-
-            mainNav.classList.remove("mobile-open");
-
-            mobileMenuBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            mobileMenuBtn.textContent = "☰";
-        }
-
-    });
-
-
-    /* RESET WHEN SCREEN BECOMES DESKTOP */
-
-    window.addEventListener("resize", function() {
-
-        if (window.innerWidth > 800) {
-
-            mainNav.classList.remove("mobile-open");
-
-            mobileMenuBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            mobileMenuBtn.textContent = "☰";
-        }
+            }
+        );
 
     });
 
 }
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+document
+.querySelectorAll(".um-reveal")
+.forEach(
+    element =>
+        observer.observe(element)
+);
+
+/* =========================================================
+   COUNTERS
+   ========================================================= */
+
+const counterObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(!entry.isIntersecting)
+                    return;
+
+                const counter =
+                    entry.target;
+
+                const target =
+                    Number(
+                        counter.dataset.count
+                    );
+
+                if(!target)
+                    return;
+
+                let current = 0;
+
+                const step =
+                    Math.max(
+                        1,
+                        Math.ceil(target / 35)
+                    );
+
+                const timer =
+                    setInterval(()=>{
+
+                        current += step;
+
+                        if(current >= target){
+
+                            current = target;
+
+                            clearInterval(
+                                timer
+                            );
+
+                        }
+
+                        counter.textContent =
+                            current;
+
+                    },35);
+
+                counterObserver.unobserve(
+                    counter
+                );
+
+            });
+
+        },
+        {
+            threshold:.5
+        }
+    );
+
+document
+.querySelectorAll("[data-count]")
+.forEach(
+    counter =>
+        counterObserver.observe(counter)
+);
+
+/* =========================================================
+   ESCAPE KEY
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            closeProduct();
+
+            closeCart();
+
+            searchOverlay.classList.remove(
+                "open"
+            );
+
+            mobileMenu.classList.remove(
+                "open"
+            );
+
+            closeCategoryPage();
+
+        }
+
+    }
+);
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+renderProducts();
+
+renderCart();
 
 </script>
 
 </body>
 </html>
-
-<!-- CHATBOT -->
-
-<button
-    id="chatbotButton"
-    onclick="openChatbot()"
-    style="
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: none;
-        background: #111;
-        color: white;
-        font-size: 25px;
-        cursor: pointer;
-        z-index: 999999;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    ">
-    💬
-</button>
-
-<iframe
-    id="chatbotFrame"
-    src="chatbot.html"
-    style="
-        display: none;
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        width: 390px;
-        height: 580px;
-        border: none;
-        z-index: 999998;
-    ">
-</iframe>
-
-<script>
-
-function openChatbot() {
-
-    document.getElementById("chatbotButton").style.display = "none";
-
-    document.getElementById("chatbotFrame").style.display = "block";
-
-}
-
-window.addEventListener("message", function(event) {
-
-    if (
-        event.data &&
-        event.data.type === "CLOSE_UCHESON_CHATBOT"
-    ) {
-
-        document.getElementById("chatbotFrame").style.display = "none";
-
-        document.getElementById("chatbotButton").style.display = "block";
-
-    }
-
-});
-
-</script>

@@ -1104,6 +1104,18 @@ footer{
     }
 
 }
+.product-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.modal-photo video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
 
 </style>
 </head>
@@ -1406,11 +1418,12 @@ data-name="Keke Brake Parts">
 
 <div class="product-image">
 
-<img
-src="https://image.made-in-china.com/2f0j00stybNQlWkSqZ/Motorcycle-Shock-Absorber-Bajaj-Tuk-Tuk-Spare-Parts.jpg"
-alt="Keke Brake Parts">
+    <video class="product-video" autoplay muted loop playsinline>
+        <source src="images/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<div class="product-no">01</div>
+    <div class="product-no">01</div>
 
 </div>
 
@@ -1418,7 +1431,7 @@ alt="Keke Brake Parts">
 
 <div>
 <small>KEKE / BRAKING</small>
-<h3>Brake Parts</h3>
+<h3>OUR SHOWS</h3>
 </div>
 
 <div class="product-arrow">↗</div>
@@ -1531,7 +1544,7 @@ data-name="Keke Shock Absorber">
 <div class="product-image">
 
 <img
-src="https://bostmoto.en.made-in-china.com/product/dyDJuGZjAHVn/China-Motorcycle-Motorbike-Spare-Parts-Rear-Shock-Absorber-for-Honda-Cg-150-Gn-125.html"
+src="images/KSA.png"
 alt="Keke Shock Absorber">
 
 <div class="product-no">05</div>
@@ -1748,7 +1761,7 @@ data-name="Keke Wheel">
 <div class="product-image">
 
 <img
-src="https://gzyxmp.en.made-in-china.com/product/mOZfxvWchPkG/China-Motorcycle-Spare-Parts-Aluminum-Alloy-Rear-Wheel-Rim-Wheel-Assy.html"
+src="images/KEKEwr.png"
 alt="Keke Wheel">
 
 <div class="product-no">12</div>
@@ -1908,7 +1921,7 @@ data-name="Motorcycle Brake Pads">
 <div class="product-image">
 
 <img
-src="https://texiar.en.made-in-china.com/product/bJtRUOaEqAcF/China-Motorcycle-Spare-Parts-Disc-Brake-Pads-for-Honda-Cbf125-CB150-Passion-Suzuki-Raider150.html"
+src="images/M.png"
 alt="Motorcycle Brake Pads">
 
 <div class="product-no">17</div>
@@ -1939,7 +1952,7 @@ data-name="Motorcycle Clutch Plates">
 <div class="product-image">
 
 <img
-src="https://xt-yazheng.en.made-in-china.com/product/xjmnNHWJuQrM/China-Motorcycle-Clutch-Disc-Plate-Spare-Parts-for-Discover135.html"
+src="images/keke clutch plate.png"
 alt="Motorcycle Clutch Plates">
 
 <div class="product-no">18</div>
@@ -2063,7 +2076,7 @@ data-name="Motorcycle Wheel Rim">
 <div class="product-image">
 
 <img
-src="https://gzyxmp.en.made-in-china.com/product/mOZfxvWchPkG/China-Motorcycle-Spare-Parts-Aluminum-Alloy-Rear-Wheel-Rim-Wheel-Assy.html"
+src="images/motorcycle workshop.png"
 alt="Motorcycle Wheel Rim">
 
 <div class="product-no">22</div>
@@ -2074,7 +2087,7 @@ alt="Motorcycle Wheel Rim">
 
 <div>
 <small>MOTORCYCLE / WHEEL</small>
-<h3>Alloy Wheel Rim</h3>
+<h3>MOTORCYCLE WORKSHOP</h3>
 </div>
 
 <div class="product-arrow">↗</div>
@@ -2094,7 +2107,7 @@ data-name="Motorcycle Shock Absorber">
 <div class="product-image">
 
 <img
-src="https://bostmoto.en.made-in-china.com/product/dyDJuGZjAHVn/China-Motorcycle-Motorbike-Spare-Parts-Rear-Shock-Absorber-for-Honda-Cg-150-Gn-125.html"
+src="images/motorcycleSA.png"
 alt="Motorcycle Shock Absorber">
 
 <div class="product-no">23</div>
@@ -2742,7 +2755,6 @@ searchInput.addEventListener(
     }
 );
 
-
 /* =====================================================
    MODAL
 ===================================================== */
@@ -2750,29 +2762,72 @@ searchInput.addEventListener(
 const modal =
     document.querySelector(".modal");
 
-const modalImage =
-    document.querySelector(
-        ".modal-photo img"
-    );
+const modalPhoto =
+    document.querySelector(".modal-photo");
 
 const modalTitle =
-    document.querySelector(
-        ".modal-title"
-    );
+    document.querySelector(".modal-title");
 
 const modalCategory =
-    document.querySelector(
-        ".modal-category"
-    );
+    document.querySelector(".modal-category");
+
 
 products.forEach(product => {
 
-    product.addEventListener(
-        "click",
-        () => {
+    product.addEventListener("click", () => {
 
-            const image =
-                product.querySelector("img");
+        /* Clear previous image/video */
+        modalPhoto.innerHTML = "";
+
+        /* Check if this product contains a video */
+        const video =
+            product.querySelector("video");
+
+        /* Check if this product contains an image */
+        const image =
+            product.querySelector("img");
+
+
+        if (video) {
+
+            /* =========================
+               OPEN VIDEO IN BIG WINDOW
+            ========================= */
+
+            const modalVideo =
+                document.createElement("video");
+
+            modalVideo.src =
+                video.querySelector("source")
+                ? video.querySelector("source").src
+                : video.src;
+
+            modalVideo.autoplay = true;
+            modalVideo.muted = true;
+            modalVideo.loop = true;
+            modalVideo.playsInline = true;
+
+            modalVideo.controls = true;
+
+            modalVideo.className =
+                "modal-video";
+
+            modalPhoto.appendChild(
+                modalVideo
+            );
+
+            modalVideo.play().catch(() => {});
+
+        }
+
+        else if (image) {
+
+            /* =========================
+               OPEN IMAGE IN BIG WINDOW
+            ========================= */
+
+            const modalImage =
+                document.createElement("img");
 
             modalImage.src =
                 image.src;
@@ -2780,23 +2835,35 @@ products.forEach(product => {
             modalImage.alt =
                 product.dataset.name;
 
-            modalTitle.textContent =
-                product.dataset.name;
-
-            modalCategory.textContent =
-                product.dataset.category
-                .toUpperCase()
-                + " / UCHESON MOTORS";
-
-            modal.classList.add("open");
-
-            document.body.style.overflow =
-                "hidden";
+            modalPhoto.appendChild(
+                modalImage
+            );
 
         }
-    );
+
+
+        /* PRODUCT INFORMATION */
+
+        modalTitle.textContent =
+            product.dataset.name;
+
+        modalCategory.textContent =
+            product.dataset.category
+            .toUpperCase()
+            + " / UCHESON MOTORS";
+
+
+        /* OPEN MODAL */
+
+        modal.classList.add("open");
+
+        document.body.style.overflow =
+            "hidden";
+
+    });
 
 });
+
 
 
 /* =====================================================
