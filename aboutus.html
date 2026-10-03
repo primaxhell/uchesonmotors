@@ -838,6 +838,162 @@
             }
         }
 
+        /* =========================================
+   MOBILE HAMBURGER MENU
+========================================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    z-index: 10001;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 27px;
+    height: 3px;
+
+    background: #111;
+
+    border-radius: 3px;
+
+    transition: 0.3s;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    /* LOGO */
+
+    .navbar .logo {
+        position: absolute;
+        left: 20px;
+
+        font-size: 18px;
+    }
+
+
+    /* HAMBURGER */
+
+    .menu-toggle {
+        display: flex;
+
+        position: absolute;
+
+        right: 20px;
+        top: 12px;
+    }
+
+
+    /* HIDE DESKTOP NAV */
+
+    .navbar nav {
+        display: none;
+    }
+
+
+    /* OPEN MOBILE MENU */
+
+    .navbar nav.active {
+        display: flex !important;
+
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        background: #f5f5f3;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 0;
+
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+
+    /* MOBILE LINKS */
+
+    .navbar nav.active a {
+        display: block;
+
+        width: 100%;
+
+        padding: 18px 20px;
+
+        text-align: center;
+
+        color: #111 !important;
+
+        background: #f5f5f3;
+
+        box-sizing: border-box;
+
+        font-size: 16px;
+    }
+
+
+    .navbar nav.active a:hover {
+        background: #e5a400;
+        color: #111 !important;
+    }
+
+
+    /* HIDE EXPLORE VEHICLES BUTTON */
+
+    .nav-btn {
+        display: none;
+    }
+
+}
+
+
+/* =========================================
+   HAMBURGER → X
+========================================= */
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
     </style>
 </head>
 
@@ -849,25 +1005,32 @@
          NAVBAR
     ========================================= -->
 
-    <header class="navbar">
+  <header class="navbar">
 
-        <div class="logo">
-            UCHESON <span>MOTORS</span>
-        </div>
+    <div class="logo">
+        UCHESON <span>MOTORS</span>
+    </div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="contactus.html">Contact</a>
-        </nav>
+    <!-- MOBILE MENU BUTTON -->
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <a href="explore.html" class="nav-btn">
-            Explore Vehicles
-        </a>
+    <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Ucheson Products</a>
+         <a href="explore.html">explore product</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
 
-    </header>
+    <a href="explore.html" class="nav-btn">
+        Explore Vehicles
+    </a>
 
+   </header>
 
 
     <!-- =========================================
@@ -1824,5 +1987,18 @@ window.addEventListener("message", function(event) {
     }
 
 });
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+function toggleMenu() {
+
+    const nav = document.getElementById("mainNav");
+    const button = document.getElementById("menuToggle");
+
+    nav.classList.toggle("active");
+    button.classList.toggle("active");
+
+}
 
 </script>

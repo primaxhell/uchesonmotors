@@ -2017,8 +2017,8 @@ a{
     <small>Ucheson Motors</small>
 
     <a href="index.html">Home</a>
-    <a href="products.html">UCHESON PRODUCTS</a>
-    <a href="explore.html">EXPLORE PRODUCTS</a>
+    <a href="products.html">Ucheson product</a>
+    <a href="explore.html">explore product</a>
     <a href="contactus.html">contact</a>
     <a href="aboutus.html">About</a>
 
@@ -5349,3 +5349,67 @@ renderCart();
 
 </body>
 </html>
+<!-- CHATBOT -->
+
+<button
+    id="chatbotButton"
+    onclick="openChatbot()"
+    style="
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        background: #111;
+        color: white;
+        font-size: 25px;
+        cursor: pointer;
+        z-index: 999999;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    ">
+    💬
+</button>
+
+<iframe
+    id="chatbotFrame"
+    src="chatbot.html"
+    style="
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 390px;
+        height: 580px;
+        border: none;
+        z-index: 999998;
+    ">
+</iframe>
+
+<script>
+
+function openChatbot() {
+
+    document.getElementById("chatbotButton").style.display = "none";
+
+    document.getElementById("chatbotFrame").style.display = "block";
+
+}
+
+window.addEventListener("message", function(event) {
+
+    if (
+        event.data &&
+        event.data.type === "CLOSE_UCHESON_CHATBOT"
+    ) {
+
+        document.getElementById("chatbotFrame").style.display = "none";
+
+        document.getElementById("chatbotButton").style.display = "block";
+
+    }
+
+});
+
+</script>

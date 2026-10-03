@@ -8,39 +8,238 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <!-- ================= HEADER ================= -->
 
-    <header class="header">
+<!-- ================= HEADER ================= -->
 
-        <div class="logo">
-            <span>UCHESON</span> MOTORS
-        </div>
+<header class="header">
 
-        <nav class="navbar" id="navbar">
-            <a href="index.html">Home</a>
-            <a href="products.html"> ucheson products</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="contactus.html">Contact</a>
-        </nav>
-     </header>
-    <br><br><br><br><br>
+    <div class="logo">
+        <span>UCHESON</span> MOTORS
+    </div>
 
-     <style>
-          .logo {
-           color: darkblue;
-           position: absolute;
-         }
-         .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            width: 100%;
-         }
-         .header {
-            position: absolute;
-         }
-        </style>
+    <!-- HAMBURGER BUTTON -->
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html">Home</a>
+        <a href="products.html">Ucheson Products</a>
+         <a href="explore.html">explore product</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contactus.html">Contact</a>
+    </nav>
+
+</header>
+<style>
+
+
+/* ================= HEADER ================= */
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+    box-sizing: border-box;
+
+    z-index: 9999;
+}
+
+/* LOGO */
+
+.logo {
+    color: darkblue;
+    font-size: 22px;
+    font-weight: bold;
+
+    position: absolute;
+    left: 40px;
+
+    z-index: 10001;
+}
+
+.logo span {
+    color: #2585ff;
+}
+
+
+/* ================= DESKTOP NAV ================= */
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+
+    width: 100%;
+}
+
+.navbar a {
+    text-decoration: none !important;
+    color: #111 !important;
+    font-weight: 500;
+}
+
+
+/* ================= HAMBURGER ================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    z-index: 10002;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 27px;
+    height: 3px;
+
+    background: #111;
+
+    border-radius: 3px;
+
+    transition: 0.3s;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    /* Logo stays on the LEFT */
+
+    .logo {
+        position: absolute;
+        left: 20px;
+
+        font-size: 18px;
+    }
+
+
+    /* Hamburger on the RIGHT */
+
+    .menu-toggle {
+        display: flex;
+
+        position: absolute;
+        right: 20px;
+        top: 12px;
+    }
+
+
+    /* Hide navigation until hamburger is clicked */
+
+    .navbar {
+        display: none;
+
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        background: white;
+
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+
+    /* SHOW MENU */
+
+    .navbar.active {
+        display: flex !important;
+    }
+
+
+    /* MOBILE LINKS */
+
+    .navbar a {
+        display: block !important;
+
+        width: 100% !important;
+
+        box-sizing: border-box;
+
+        padding: 18px 20px !important;
+
+        text-align: center !important;
+
+        color: #111 !important;
+
+        background: white !important;
+
+        text-decoration: none !important;
+
+        font-size: 16px;
+    }
+
+
+    .navbar a:hover {
+        background: #f2f2f2 !important;
+    }
+
+}
+
+
+/* ================= HAMBURGER → X ================= */
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+</style>
+
+
+
 
      <!-- ================= CONTACT ================= -->
 
@@ -278,5 +477,18 @@ window.addEventListener("message", function(event) {
     }
 
 });
+
+</script>
+<script>
+
+function toggleMenu() {
+
+    const navbar = document.getElementById("navbar");
+    const menuButton = document.getElementById("menuToggle");
+
+    navbar.classList.toggle("active");
+    menuButton.classList.toggle("active");
+
+}
 
 </script>
